@@ -144,17 +144,19 @@ em { font-style: italic; font-family: var(--font-display); font-weight: 400; }
 /* ========== HERO ========== */
 .hero {
   position: relative;
-  padding: clamp(48px, 8vw, 108px) var(--pad) clamp(40px, 6vw, 80px);
+  padding: clamp(56px, 8vw, 112px) var(--pad) clamp(56px, 6vw, 96px);
   max-width: var(--maxw); margin: 0 auto;
   min-height: 86vh;
   display: grid;
-  grid-template-rows: auto auto 1fr auto auto;
-  gap: clamp(22px, 3vw, 40px);
+  grid-template-rows: auto 1fr auto auto;
+  gap: clamp(20px, 2.6vw, 36px);
 }
 
-/* NALSC Member Firm pill — hero placement */
+/* NALSC Member Firm pill — bottom-right of hero */
 .nalsc-pill {
-  justify-self: start;
+  position: absolute;
+  right: var(--pad);
+  bottom: clamp(40px, 5vw, 80px);
   display: inline-flex;
   align-items: center;
   gap: 14px;
@@ -165,6 +167,7 @@ em { font-style: italic; font-family: var(--font-display); font-weight: 400; }
   color: #F1E9DA;
   text-decoration: none;
   transition: transform .4s var(--ease), border-color .4s var(--ease), background .4s var(--ease);
+  z-index: 2;
 }
 .nalsc-pill:hover {
   transform: translateY(-2px);
@@ -195,6 +198,13 @@ em { font-style: italic; font-family: var(--font-display); font-weight: 400; }
   color: #F1E9DA;
   letter-spacing: 0.005em;
 }
+@media (max-width: 860px) {
+  .nalsc-pill {
+    position: static;
+    justify-self: start;
+    margin-top: 24px;
+  }
+}
 @media (max-width: 560px) {
   .nalsc-pill-name { font-size: 12px; max-width: 210px; }
 }
@@ -220,10 +230,11 @@ em { font-style: italic; font-family: var(--font-display); font-weight: 400; }
 .hero-title {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(56px, 11vw, 180px);
-  line-height: .92;
-  letter-spacing: -0.035em;
+  font-size: clamp(44px, 8vw, 116px);
+  line-height: .98;
+  letter-spacing: -0.03em;
   margin: 0;
+  max-width: 16ch;
 }
 .hero-title .line { display: block; overflow: hidden; }
 .hero-title .line > * { display: inline-block; }
