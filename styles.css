@@ -583,9 +583,9 @@ em { font-style: italic; font-family: var(--font-display); font-weight: 400; }
   font-family: var(--font-display); font-size: clamp(28px, 3.2vw, 44px);
   line-height: 1.02; letter-spacing: -0.02em; font-weight: 400;
 }
-.cta-mail {
-  font-family: var(--font-mono); font-size: 13px; color: var(--ink-dim);
-  margin-top: 8px;
+.cta-sub {
+  font-family: var(--font-mono); font-size: 11px; color: var(--ink-dim);
+  letter-spacing: .08em; text-transform: uppercase; margin-top: 10px;
 }
 @media (max-width: 900px) { .cta .cta-inner { grid-template-columns: 1fr; } }
 
@@ -613,6 +613,9 @@ em { font-style: italic; font-family: var(--font-display); font-weight: 400; }
   transition: color .3s var(--ease);
 }
 .foot-cols a:hover { color: var(--ink); }
+.foot-addr {
+  display: block; padding: 6px 0; color: var(--ink-dim); font-size: 14px;
+}
 
 /* NALSC badge */
 .foot-nalsc {
