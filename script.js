@@ -5,20 +5,6 @@
   const qs = (s, r = document) => r.querySelector(s);
   const qsa = (s, r = document) => Array.from(r.querySelectorAll(s));
 
-  /* ---------- Audience toggle ---------- */
-  const toggleButtons = qsa(".audience-toggle button");
-  toggleButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const aud = btn.dataset.audience;
-      body.dataset.audience = aud;
-      toggleButtons.forEach((b) => {
-        const active = b.dataset.audience === aud;
-        b.classList.toggle("is-active", active);
-        b.setAttribute("aria-selected", active ? "true" : "false");
-      });
-    });
-  });
-
   /* ---------- Year stamp ---------- */
   const yr = qs("#yr");
   if (yr) yr.textContent = String(new Date().getFullYear());

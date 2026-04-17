@@ -124,33 +124,6 @@ em { font-style: italic; font-family: var(--font-display); font-weight: 400; }
   display: flex; align-items: center; gap: 14px; justify-content: flex-end;
 }
 
-/* Audience toggle */
-.audience-toggle {
-  position: relative;
-  display: inline-flex; gap: 0;
-  background: var(--bg-3);
-  border: 1px solid var(--line);
-  border-radius: 999px; padding: 4px;
-  font-size: 12px; letter-spacing: .02em;
-}
-.audience-toggle button {
-  position: relative; z-index: 2;
-  appearance: none; background: transparent; border: 0;
-  color: var(--ink-dim); font: inherit;
-  padding: 7px 14px; border-radius: 999px; cursor: pointer;
-  transition: color .3s var(--ease);
-  font-family: var(--font-sans);
-}
-.audience-toggle button.is-active { color: #FFF8EC; }
-.toggle-pill {
-  position: absolute; top: 4px; left: 4px;
-  height: calc(100% - 8px); width: calc(50% - 4px);
-  background: var(--ink); border-radius: 999px;
-  transition: transform .4s var(--ease);
-  z-index: 1;
-}
-body[data-audience="candidates"] .toggle-pill { transform: translateX(100%); }
-
 /* Buttons */
 .btn {
   display: inline-flex; align-items: center; gap: 10px;
@@ -167,11 +140,6 @@ body[data-audience="candidates"] .toggle-pill { transform: translateX(100%); }
 .btn-ghost:hover { border-color: var(--ink); background: rgba(21,17,12,0.04); }
 .btn-light { background: var(--accent); color: #FFF8EC; }
 .btn-light:hover { background: var(--ink); }
-
-/* Audience-aware buttons: show only the active one */
-[data-only="firms"], [data-only="candidates"] { display: none; }
-body[data-audience="firms"] [data-only="firms"] { display: inline-flex; }
-body[data-audience="candidates"] [data-only="candidates"] { display: inline-flex; }
 
 /* ========== HERO ========== */
 .hero {
@@ -362,8 +330,7 @@ body[data-audience="candidates"] [data-only="candidates"] { display: inline-flex
 }
 .split-card:hover { border-color: var(--accent); transform: translateY(-4px); }
 
-body[data-audience="firms"] .firms-card,
-body[data-audience="candidates"] .candidates-card {
+.split-card.is-feature {
   background: linear-gradient(180deg, rgba(185,114,30,0.10), rgba(185,114,30,0) 60%), var(--bg-3);
   border-color: var(--accent);
 }
