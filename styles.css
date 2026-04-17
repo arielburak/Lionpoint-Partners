@@ -144,12 +144,54 @@ em { font-style: italic; font-family: var(--font-display); font-weight: 400; }
 /* ========== HERO ========== */
 .hero {
   position: relative;
-  padding: clamp(60px, 10vw, 140px) var(--pad) clamp(40px, 6vw, 80px);
+  padding: clamp(48px, 8vw, 108px) var(--pad) clamp(40px, 6vw, 80px);
   max-width: var(--maxw); margin: 0 auto;
   min-height: 86vh;
   display: grid;
-  grid-template-rows: auto 1fr auto auto;
+  grid-template-rows: auto auto 1fr auto auto;
   gap: clamp(22px, 3vw, 40px);
+}
+
+/* NALSC Member Firm pill — hero placement */
+.nalsc-pill {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 18px 10px 10px;
+  background: #141110;
+  border: 1px solid rgba(245,239,228,0.1);
+  border-radius: 999px;
+  color: #F1E9DA;
+  text-decoration: none;
+  transition: transform .4s var(--ease), border-color .4s var(--ease), background .4s var(--ease);
+}
+.nalsc-pill:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+.nalsc-pill-mark {
+  display: grid; place-items: center;
+  width: 42px; height: 42px;
+  background: #FFFFFF;
+  border-radius: 8px;
+  flex: 0 0 auto;
+  overflow: hidden;
+}
+.nalsc-pill-mark svg { width: 90%; height: 90%; display: block; }
+.nalsc-pill-text { display: grid; line-height: 1.15; gap: 2px; }
+.nalsc-pill-kicker {
+  font-family: var(--font-mono); font-size: 10.5px;
+  color: var(--accent);
+  letter-spacing: .22em; text-transform: uppercase;
+}
+.nalsc-pill-name {
+  font-family: var(--font-sans); font-size: 13px;
+  color: #F1E9DA;
+  letter-spacing: 0.005em;
+}
+@media (max-width: 560px) {
+  .nalsc-pill-name { font-size: 12px; max-width: 210px; }
 }
 
 .hero-meta {
@@ -310,56 +352,125 @@ em { font-style: italic; font-family: var(--font-display); font-weight: 400; }
 }
 @media (max-width: 780px) { .grid.services { grid-template-columns: 1fr; } }
 
-/* ========== SPLIT audience ========== */
-.split-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+/* ========== APPROACH: Process + Expect ========== */
+
+/* Process 3-step grid */
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(24px, 3vw, 48px);
+  margin-bottom: clamp(56px, 7vw, 96px);
 }
-.split-card {
+.process-step {
   position: relative;
-  padding: clamp(28px, 3.2vw, 48px);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  background: var(--bg-3);
-  transition: border-color .4s var(--ease), transform .5s var(--ease), box-shadow .5s var(--ease);
+  padding-top: 56px;
 }
-.split-card:hover { box-shadow: 0 18px 40px -20px rgba(21,17,12,0.18); }
-.split-card::before {
-  content: ""; position: absolute; inset: 0;
-  border-radius: 18px; pointer-events: none;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+.process-num {
+  position: absolute; top: -18px; left: -4px;
+  font-family: var(--font-display);
+  font-size: clamp(80px, 10vw, 160px);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(21,17,12,0.18);
+  letter-spacing: -0.02em;
+  user-select: none;
+  pointer-events: none;
+  z-index: 0;
 }
-.split-card:hover { border-color: var(--accent); transform: translateY(-4px); }
-
-.split-card.is-feature {
-  background: linear-gradient(180deg, rgba(185,114,30,0.10), rgba(185,114,30,0) 60%), var(--bg-3);
-  border-color: var(--accent);
-}
-
-.split-tag {
-  display: inline-block;
-  font-family: var(--font-mono); font-size: 11px; color: var(--accent);
-  letter-spacing: .16em; text-transform: uppercase;
-  margin-bottom: 14px;
-}
-.split-card h3 {
+.process-step h3 {
+  position: relative; z-index: 1;
   font-family: var(--font-display); font-weight: 400;
-  font-size: clamp(28px, 3.4vw, 48px); line-height: 1.02;
-  letter-spacing: -0.025em;
-  margin: 0 0 28px;
+  font-size: clamp(22px, 2.2vw, 30px);
+  letter-spacing: -0.02em;
+  margin: 0 0 12px;
 }
-.checklist { list-style: none; padding: 0; margin: 0 0 28px; display: grid; gap: 12px; }
-.checklist li {
-  display: grid; grid-template-columns: 32px 1fr; gap: 14px; align-items: baseline;
-  padding: 14px 0; border-top: 1px solid var(--line);
+.process-step p {
+  position: relative; z-index: 1;
   color: var(--ink-dim);
-}
-.checklist li:last-child { border-bottom: 1px solid var(--line); }
-.checklist li span {
-  font-family: var(--font-mono); font-size: 11px; color: var(--accent);
-  letter-spacing: .1em;
+  margin: 0;
+  max-width: 44ch;
+  font-size: 15.5px;
+  line-height: 1.55;
 }
 
-@media (max-width: 860px) { .split-grid { grid-template-columns: 1fr; } }
+@media (max-width: 860px) {
+  .process-grid { grid-template-columns: 1fr; gap: 36px; }
+  .process-step { padding-top: 44px; }
+  .process-num { font-size: 90px; top: -12px; }
+}
+
+/* What you can expect — inverted dark block */
+.expect-block {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(28px, 5vw, 88px);
+  padding: clamp(40px, 5vw, 72px);
+  border-radius: 20px;
+  background: #141110;
+  color: #F1E9DA;
+  position: relative;
+  overflow: hidden;
+}
+.expect-block::before {
+  content: "";
+  position: absolute; inset: auto -20% -40% auto;
+  width: 70%; height: 120%;
+  background: radial-gradient(closest-side, rgba(232,154,44,0.16), transparent 70%);
+  pointer-events: none;
+}
+.expect-left { position: relative; z-index: 1; display: grid; align-content: start; gap: 18px; }
+.expect-kicker {
+  font-family: var(--font-mono); font-size: 11px; color: var(--accent);
+  letter-spacing: .18em; text-transform: uppercase;
+}
+.expect-left h3 {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(28px, 3.2vw, 44px);
+  letter-spacing: -0.025em; line-height: 1.05;
+  color: #FBF5E8;
+  margin: 0;
+}
+.expect-left p {
+  color: rgba(241,233,218,0.72);
+  max-width: 40ch;
+  margin: 0;
+}
+.expect-link {
+  display: inline-flex; align-items: center; gap: 10px;
+  color: var(--accent);
+  font-family: var(--font-sans); font-size: 14px; font-weight: 500;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(232,154,44,0.35);
+  align-self: start;
+  transition: gap .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease);
+}
+.expect-link:hover { gap: 16px; color: #F7C058; border-color: var(--accent); }
+
+.expect-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  position: relative; z-index: 1;
+}
+.expect-list li {
+  display: grid; grid-template-columns: 16px 1fr; gap: 14px;
+  align-items: baseline;
+  color: rgba(241,233,218,0.88);
+  font-size: 16px;
+  line-height: 1.5;
+}
+.expect-list li::before {
+  content: "";
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--accent);
+  margin-top: 8px;
+}
+
+@media (max-width: 860px) {
+  .expect-block { grid-template-columns: 1fr; }
+}
 
 /* ========== STATS ========== */
 .stats {
