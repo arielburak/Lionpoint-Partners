@@ -171,14 +171,19 @@ em { font-style: italic; font-family: var(--font-display); font-weight: 400; }
   border-color: var(--accent);
 }
 .nalsc-pill-mark {
-  display: grid; place-items: center;
-  width: 42px; height: 42px;
+  display: inline-grid; place-items: center;
+  width: 52px; height: 42px;
+  min-width: 52px; max-width: 52px;
   background: #FFFFFF;
   border-radius: 8px;
   flex: 0 0 auto;
   overflow: hidden;
 }
-.nalsc-pill-mark svg { width: 90%; height: 90%; display: block; }
+.nalsc-pill-mark svg {
+  display: block;
+  width: 44px; height: 33px;
+  max-width: 44px; max-height: 33px;
+}
 .nalsc-pill-text { display: grid; line-height: 1.15; gap: 2px; }
 .nalsc-pill-kicker {
   font-family: var(--font-mono); font-size: 10.5px;
