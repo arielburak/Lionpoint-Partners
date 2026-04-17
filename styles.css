@@ -278,15 +278,6 @@ em { font-style: italic; font-family: var(--font-display); font-weight: 400; }
   letter-spacing: .12em; text-transform: uppercase;
 }
 
-.hero-spine {
-  position: absolute; left: 12px; top: 50%;
-  transform: translateY(-50%) rotate(-90deg); transform-origin: left center;
-  display: flex; gap: 24px;
-  font-family: var(--font-mono); font-size: 11px; color: var(--ink-mute);
-  letter-spacing: .12em; text-transform: uppercase;
-  white-space: nowrap;
-}
-@media (max-width: 860px) { .hero-spine { display: none; } }
 
 /* ========== MARQUEE ========== */
 .marquee {
