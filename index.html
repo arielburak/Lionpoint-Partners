@@ -361,12 +361,10 @@
         <a class="cta-box cands-box" href="mailto:candidates@lionpointpartners.com?subject=Confidential%20Introduction" id="candidates-cta">
           <span class="cta-kicker">For Attorneys</span>
           <span class="cta-head">Confidential introduction →</span>
-          <span class="cta-sub">Opens a confidential email</span>
         </a>
         <a class="cta-box firms-box" href="mailto:info@lionpointpartners.com?subject=Retained%20Search%20Inquiry" id="firms-cta">
           <span class="cta-kicker">For Law Firms</span>
           <span class="cta-head">Retain a search →</span>
-          <span class="cta-sub">Opens a new email</span>
         </a>
       </div>
     </div>
@@ -375,11 +373,52 @@
 
 <footer class="foot">
   <div class="foot-top">
-    <a class="brand" href="#top">
-      <svg class="brand-mark" aria-hidden="true"><use href="#lp-mark"/></svg>
-      <span class="brand-bar" aria-hidden="true"></span>
-      <span class="brand-text">LIONPOINT</span>
-    </a>
+    <div class="foot-brand-col">
+      <a class="brand" href="#top">
+        <svg class="brand-mark" aria-hidden="true"><use href="#lp-mark"/></svg>
+        <span class="brand-bar" aria-hidden="true"></span>
+        <span class="brand-text">LIONPOINT</span>
+      </a>
+
+      <!-- NALSC membership badge, nested under brand -->
+      <div class="nalsc-badge" aria-label="NALSC Member">
+        <svg class="nalsc-mark" viewBox="0 0 200 150" aria-hidden="true" role="img">
+          <defs>
+            <linearGradient id="nalscGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0"    stop-color="#F7C058"/>
+              <stop offset=".45"  stop-color="#E89A2C"/>
+              <stop offset="1"    stop-color="#8E4E10"/>
+            </linearGradient>
+            <linearGradient id="nalscHighlight" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0"    stop-color="rgba(255,255,255,0.55)"/>
+              <stop offset=".5"   stop-color="rgba(255,255,255,0)"/>
+            </linearGradient>
+          </defs>
+          <g>
+            <rect x="14"  y="6" width="28" height="80" fill="url(#nalscGrad)"/>
+            <rect x="48"  y="6" width="28" height="80" fill="url(#nalscGrad)"/>
+            <rect x="82"  y="6" width="28" height="80" fill="url(#nalscGrad)"/>
+            <rect x="116" y="6" width="28" height="80" fill="url(#nalscGrad)"/>
+            <rect x="150" y="6" width="28" height="80" fill="url(#nalscGrad)"/>
+            <rect x="14"  y="6" width="28" height="34" fill="url(#nalscHighlight)"/>
+            <rect x="48"  y="6" width="28" height="34" fill="url(#nalscHighlight)"/>
+            <rect x="82"  y="6" width="28" height="34" fill="url(#nalscHighlight)"/>
+            <rect x="116" y="6" width="28" height="34" fill="url(#nalscHighlight)"/>
+            <rect x="150" y="6" width="28" height="34" fill="url(#nalscHighlight)"/>
+          </g>
+          <path d="M6 94 Q100 118 194 94" fill="none" stroke="#111" stroke-width="3.5" stroke-linecap="round"/>
+          <text x="100" y="138" text-anchor="middle"
+                font-family="Inter, Helvetica, Arial, sans-serif" font-weight="800"
+                font-size="34" letter-spacing="6" fill="#111">NALSC</text>
+        </svg>
+        <div class="nalsc-text">
+          <span class="nalsc-kicker">Proud Member</span>
+          <span class="nalsc-name">National Association of<br/>Legal Search Consultants</span>
+          <span class="nalsc-sub">Committed to the NALSC Code of Ethics<sup>®</sup></span>
+        </div>
+      </div>
+    </div>
+
     <div class="foot-cols">
       <div>
         <h4>Services</h4>
@@ -398,46 +437,6 @@
         <h4>Office</h4>
         <span class="foot-addr">199 Water Street</span>
         <span class="foot-addr">New York, NY</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- NALSC membership badge -->
-  <div class="foot-nalsc" aria-label="NALSC Member">
-    <div class="nalsc-badge">
-      <svg class="nalsc-mark" viewBox="0 0 200 150" aria-hidden="true" role="img">
-        <defs>
-          <linearGradient id="nalscGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0"    stop-color="#F7C058"/>
-            <stop offset=".45"  stop-color="#E89A2C"/>
-            <stop offset="1"    stop-color="#8E4E10"/>
-          </linearGradient>
-          <linearGradient id="nalscHighlight" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0"    stop-color="rgba(255,255,255,0.55)"/>
-            <stop offset=".5"   stop-color="rgba(255,255,255,0)"/>
-          </linearGradient>
-        </defs>
-        <g>
-          <rect x="14"  y="6" width="28" height="80" fill="url(#nalscGrad)"/>
-          <rect x="48"  y="6" width="28" height="80" fill="url(#nalscGrad)"/>
-          <rect x="82"  y="6" width="28" height="80" fill="url(#nalscGrad)"/>
-          <rect x="116" y="6" width="28" height="80" fill="url(#nalscGrad)"/>
-          <rect x="150" y="6" width="28" height="80" fill="url(#nalscGrad)"/>
-          <rect x="14"  y="6" width="28" height="34" fill="url(#nalscHighlight)"/>
-          <rect x="48"  y="6" width="28" height="34" fill="url(#nalscHighlight)"/>
-          <rect x="82"  y="6" width="28" height="34" fill="url(#nalscHighlight)"/>
-          <rect x="116" y="6" width="28" height="34" fill="url(#nalscHighlight)"/>
-          <rect x="150" y="6" width="28" height="34" fill="url(#nalscHighlight)"/>
-        </g>
-        <path d="M6 94 Q100 118 194 94" fill="none" stroke="#111" stroke-width="3.5" stroke-linecap="round"/>
-        <text x="100" y="138" text-anchor="middle"
-              font-family="Inter, Helvetica, Arial, sans-serif" font-weight="800"
-              font-size="34" letter-spacing="6" fill="#111">NALSC</text>
-      </svg>
-      <div class="nalsc-text">
-        <span class="nalsc-kicker">Proud Member</span>
-        <span class="nalsc-name">National Association of<br/>Legal Search Consultants</span>
-        <span class="nalsc-sub">Committed to the NALSC Code of Ethics<sup>®</sup></span>
       </div>
     </div>
   </div>
