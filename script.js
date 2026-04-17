@@ -19,6 +19,10 @@
     });
   });
 
+  /* ---------- Year stamp ---------- */
+  const yr = qs("#yr");
+  if (yr) yr.textContent = String(new Date().getFullYear());
+
   /* ---------- Clock in hero meta ---------- */
   const clock = qs("#clock");
   if (clock) {

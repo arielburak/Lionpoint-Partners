@@ -3,15 +3,25 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Lionpoint Partners — Talent that moves markets</title>
-<meta name="description" content="Lionpoint Partners is a specialist search and talent advisory firm connecting world-class firms with the people who define their next chapter." />
+<title>Lionpoint Partners — Premier Legal Recruitment</title>
+<meta name="description" content="Lionpoint Partners is a New York–based, NALSC member legal search firm connecting leading legal talent with V10, AmLaw 100, and boutique law firms." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='78' font-size='90'%3E%F0%9F%A6%81%3C/text%3E%3C/svg%3E" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='17' fill='none' stroke='%23E8A15B' stroke-width='1.5'/%3E%3Ccircle cx='20' cy='20' r='14' fill='none' stroke='%23E8A15B' stroke-width='1'/%3E%3Ctext x='20' y='27' font-family='Georgia,serif' font-size='18' text-anchor='middle' fill='%23E8A15B'%3EL%3C/text%3E%3C/svg%3E" />
 </head>
 <body data-audience="firms">
+
+<!-- Reusable brand mark: double-ring circle with serif L -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="lp-mark" viewBox="0 0 40 40">
+    <circle cx="20" cy="20" r="18.2" fill="none" stroke="currentColor" stroke-width="1"/>
+    <circle cx="20" cy="20" r="15" fill="none" stroke="currentColor" stroke-width="1"/>
+    <text x="20" y="26.5" font-family="Fraunces, Georgia, serif" font-weight="400"
+          font-size="18" letter-spacing="0" text-anchor="middle" fill="currentColor">L</text>
+  </symbol>
+</svg>
 
 <!-- Grain overlay -->
 <div class="grain" aria-hidden="true"></div>
@@ -22,25 +32,23 @@
 <!-- Top bar / nav -->
 <header class="nav">
   <a class="brand" href="#top" aria-label="Lionpoint Partners">
-    <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
-      <path d="M20 3 L34 13 L28 35 L12 35 L6 13 Z" fill="none" stroke="currentColor" stroke-width="1.6"/>
-      <circle cx="20" cy="20" r="3" fill="currentColor"/>
-    </svg>
-    <span class="brand-text">Lionpoint<span class="brand-dot">.</span>Partners</span>
+    <svg class="brand-mark" aria-hidden="true"><use href="#lp-mark"/></svg>
+    <span class="brand-bar" aria-hidden="true"></span>
+    <span class="brand-text">LIONPOINT</span>
   </a>
 
   <nav class="nav-links">
-    <a href="#practice">Practice</a>
+    <a href="#practice">Services</a>
     <a href="#approach">Approach</a>
-    <a href="#work">Work</a>
+    <a href="#work">Placements</a>
     <a href="#insights">Insights</a>
     <a href="#team">Team</a>
   </nav>
 
   <div class="nav-cta">
     <div class="audience-toggle" role="tablist" aria-label="Choose audience">
-      <button class="is-active" role="tab" aria-selected="true" data-audience="firms">For Firms</button>
-      <button role="tab" aria-selected="false" data-audience="candidates">For Candidates</button>
+      <button class="is-active" role="tab" aria-selected="true" data-audience="firms">For Law Firms</button>
+      <button role="tab" aria-selected="false" data-audience="candidates">For Attorneys</button>
       <span class="toggle-pill" aria-hidden="true"></span>
     </div>
     <a class="btn btn-primary" href="#contact">
@@ -56,36 +64,37 @@
   <section class="hero">
     <div class="hero-meta">
       <span class="dot"></span>
-      <span>NYC · London · Singapore</span>
+      <span>New York City</span>
       <span class="sep">/</span>
       <span id="clock" aria-live="off">—</span>
+      <span class="sep">/</span>
+      <span>NALSC Member</span>
     </div>
 
     <h1 class="hero-title">
-      <span class="line"><em>Talent</em> that</span>
-      <span class="line">moves <span class="accent">markets.</span></span>
+      <span class="line"><em>Premier</em> legal</span>
+      <span class="line">recruitment.</span>
     </h1>
 
     <p class="hero-sub">
-      Lionpoint Partners is a specialist search &amp; talent advisory firm for private capital,
-      fintech, and the firms building the next decade of finance.
+      Lionpoint Partners connects leading legal talent with top-tier law firms —
+      including V10, AmLaw 100, and boutiques — through a discreet, partner-led search process.
     </p>
 
     <div class="hero-ctas">
       <a class="btn btn-primary lg" href="#firms-cta" data-only="firms">
-        <span>Hire with us</span>
+        <span>Retain us for a search</span>
         <svg viewBox="0 0 20 20" width="16" height="16"><path d="M4 10h12M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
       <a class="btn btn-primary lg" href="#candidates-cta" data-only="candidates">
-        <span>Talk to a partner</span>
+        <span>Confidential introduction</span>
         <svg viewBox="0 0 20 20" width="16" height="16"><path d="M4 10h12M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
       <a class="btn btn-ghost lg" href="#work">
-        <span>See recent work</span>
+        <span>Selected placements</span>
       </a>
     </div>
 
-    <!-- Scroll hint -->
     <div class="scroll-hint">
       <span>Scroll</span>
       <svg viewBox="0 0 12 24" width="12" height="24" aria-hidden="true">
@@ -94,80 +103,86 @@
       </svg>
     </div>
 
-    <!-- Decorative spine -->
     <div class="hero-spine" aria-hidden="true">
-      <span>01 — Search, refined.</span>
-      <span>LP / 2026</span>
+      <span>Attorney Search, Refined.</span>
+      <span>Est. NYC</span>
     </div>
   </section>
 
-  <!-- Marquee -->
-  <section class="marquee" aria-label="Our clients include">
+  <!-- Practice-area marquee -->
+  <section class="marquee" aria-label="Practice areas we cover">
     <div class="marquee-track">
-      <span>Private Equity</span><span>·</span>
-      <span>Private Credit</span><span>·</span>
-      <span>Venture</span><span>·</span>
-      <span>Hedge Funds</span><span>·</span>
-      <span>Fintech</span><span>·</span>
-      <span>Infrastructure</span><span>·</span>
-      <span>Asset Management</span><span>·</span>
-      <span>Family Offices</span><span>·</span>
-      <span>Private Equity</span><span>·</span>
-      <span>Private Credit</span><span>·</span>
-      <span>Venture</span><span>·</span>
-      <span>Hedge Funds</span><span>·</span>
-      <span>Fintech</span><span>·</span>
-      <span>Infrastructure</span><span>·</span>
-      <span>Asset Management</span><span>·</span>
-      <span>Family Offices</span><span>·</span>
+      <span>Corporate &amp; M&amp;A</span><span>·</span>
+      <span>Private Funds</span><span>·</span>
+      <span>Finance</span><span>·</span>
+      <span>Litigation</span><span>·</span>
+      <span>Intellectual Property</span><span>·</span>
+      <span>Real Estate</span><span>·</span>
+      <span>Tax</span><span>·</span>
+      <span>Restructuring</span><span>·</span>
+      <span>Antitrust</span><span>·</span>
+      <span>Regulatory</span><span>·</span>
+      <span>Capital Markets</span><span>·</span>
+      <span>Corporate &amp; M&amp;A</span><span>·</span>
+      <span>Private Funds</span><span>·</span>
+      <span>Finance</span><span>·</span>
+      <span>Litigation</span><span>·</span>
+      <span>Intellectual Property</span><span>·</span>
+      <span>Real Estate</span><span>·</span>
+      <span>Tax</span><span>·</span>
+      <span>Restructuring</span><span>·</span>
+      <span>Antitrust</span><span>·</span>
+      <span>Regulatory</span><span>·</span>
+      <span>Capital Markets</span><span>·</span>
     </div>
   </section>
 
-  <!-- Practice / Services -->
+  <!-- Services -->
   <section class="section" id="practice">
     <div class="section-head">
-      <span class="eyebrow"><span class="eyebrow-num">01</span> Practice</span>
+      <span class="eyebrow"><span class="eyebrow-num">01</span> Services</span>
       <h2 class="section-title">
-        Built around the<br/>
-        <em>people problem.</em>
+        Tailored search for<br/>
+        <em>V10, AmLaw 100,</em> and boutiques.
       </h2>
       <p class="section-lede">
-        We don't run req-stuffed pipelines. Every mandate is led by a partner with deep
-        operating context — because the right hire is usually the <em>quiet</em> one.
+        We specialize exclusively in legal recruitment. Every engagement is led by a
+        senior recruiter who understands your firm's culture, strategic goals, and
+        practice-area needs before a single candidate is surfaced.
       </p>
     </div>
 
     <div class="grid services">
       <article class="service">
         <div class="service-num">→ 01</div>
-        <h3>Executive Search</h3>
-        <p>Managing partners, C-suite, and investment leadership for firms at inflection points.</p>
+        <h3>Partner Recruitment</h3>
+        <p>High-impact lateral partners with proven client relationships, portable business, and the leadership to strengthen a practice.</p>
         <ul class="tags">
-          <li>CEO / COO</li><li>CFO</li><li>Head of Investments</li><li>GP / MD</li>
+          <li>Laterals</li><li>Practice leaders</li><li>Section chairs</li><li>Portable books</li>
         </ul>
       </article>
       <article class="service">
         <div class="service-num">→ 02</div>
-        <h3>Investor Relations &amp; Capital Formation</h3>
-        <p>The fundraisers, product specialists, and capital markets leaders who unlock growth.</p>
+        <h3>Associate Placement</h3>
+        <p>Associates at every level — from junior to senior — matched to firms where the work, training, and trajectory actually align.</p>
         <ul class="tags">
-          <li>Head of IR</li><li>Capital Formation</li><li>Product</li><li>RFP</li>
+          <li>Junior → Senior</li><li>Counsel track</li><li>Specialists</li>
         </ul>
       </article>
       <article class="service">
         <div class="service-num">→ 03</div>
-        <h3>Investment Teams</h3>
-        <p>Principals, VPs, and analysts across buyout, credit, infrastructure, and growth.</p>
+        <h3>Group &amp; Lateral Teams</h3>
+        <p>Full practice-group moves. We manage sensitive, multi-party transitions end-to-end — from first conversation to Day One.</p>
         <ul class="tags">
-          <li>Associate → Principal</li><li>Sector Leads</li><li>Portfolio Ops</li>
+          <li>Group moves</li><li>Office launches</li><li>Practice build-outs</li>
         </ul>
       </article>
       <article class="service">
         <div class="service-num">→ 04</div>
-        <h3>Advisory &amp; Org Design</h3>
-        <p>Compensation benchmarking, succession planning, and team architecture before you hire.</p>
+        <h3>In-House &amp; GC Searches</h3>
+        <p>General Counsel, Deputy GC, and senior in-house hires for corporate legal departments moving on from their prior firms.</p>
         <ul class="tags">
-          <li>Comp design</li><li>Succession</li><li>Market intel</li>
+          <li>General Counsel</li><li>Deputy GC</li><li>Division lead</li>
         </ul>
       </article>
     </div>
@@ -183,31 +198,31 @@
     <div class="split-grid">
       <div class="split-card firms-card" data-aud="firms">
         <header>
-          <span class="split-tag">For Firms</span>
-          <h3>Hire the person<br/>the market won't see coming.</h3>
+          <span class="split-tag">For Law Firms</span>
+          <h3>A search partner,<br/>not a résumé pipeline.</h3>
         </header>
         <ul class="checklist">
-          <li><span>01</span>Discreet outreach to operators who aren't "on the market"</li>
-          <li><span>02</span>Partner-led process, no handoffs, no junior intermediaries</li>
-          <li><span>03</span>Longlist in 10 days, shortlist in 21, offer inside 60</li>
-          <li><span>04</span>Post-placement integration and 12-month guarantee</li>
+          <li><span>01</span>Senior-led outreach to attorneys who aren't "on the market"</li>
+          <li><span>02</span>Deep pre-search: culture, compensation, practice-area fit, conflicts</li>
+          <li><span>03</span>Bar-vetted, reference-checked shortlists — no volume-fill</li>
+          <li><span>04</span>NALSC Code of Ethics on every engagement, always</li>
         </ul>
         <a class="btn btn-light" href="#firms-cta">
-          <span>Brief a partner</span>
+          <span>Retain a search</span>
           <svg viewBox="0 0 20 20" width="14" height="14"><path d="M4 10h12M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
 
       <div class="split-card candidates-card" data-aud="candidates">
         <header>
-          <span class="split-tag">For Candidates</span>
-          <h3>Career moves,<br/>not transactions.</h3>
+          <span class="split-tag">For Attorneys</span>
+          <h3>Career moves,<br/>handled with discretion.</h3>
         </header>
         <ul class="checklist">
-          <li><span>01</span>Confidential conversations, even if you aren't actively looking</li>
-          <li><span>02</span>Honest market intel — comp, culture, trajectory, risk</li>
-          <li><span>03</span>We represent you for the next three moves, not just this one</li>
-          <li><span>04</span>Active introductions to funds you'd never cold-email</li>
+          <li><span>01</span>Confidential conversations — even if you're not actively looking</li>
+          <li><span>02</span>Honest market intel on comp, hours, origination credit, and culture</li>
+          <li><span>03</span>Direct introductions to V10, AmLaw 100, and leading boutiques</li>
+          <li><span>04</span>A recruiter who represents your next three moves, not one</li>
         </ul>
         <a class="btn btn-light" href="#candidates-cta">
           <span>Have a conversation</span>
@@ -220,34 +235,38 @@
   <!-- Stats -->
   <section class="stats">
     <div class="stat">
-      <div class="stat-num" data-count="92">0</div>
+      <div class="stat-num" data-count="94">0</div>
       <div class="stat-sfx">%</div>
-      <div class="stat-lbl">Retention at 24 months</div>
+      <div class="stat-lbl">Placements still at firm at 24 months</div>
     </div>
     <div class="stat">
-      <div class="stat-num" data-count="47">0</div>
-      <div class="stat-sfx">d</div>
-      <div class="stat-lbl">Median search-to-offer</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num" data-count="310">0</div>
+      <div class="stat-num" data-count="100">0</div>
       <div class="stat-sfx">+</div>
-      <div class="stat-lbl">Mandates completed</div>
+      <div class="stat-lbl">V10 / AmLaw 100 relationships</div>
     </div>
     <div class="stat">
-      <div class="stat-num" data-count="18">0</div>
-      <div class="stat-sfx">yr</div>
-      <div class="stat-lbl">Avg. partner tenure in market</div>
+      <div class="stat-num" data-count="300">0</div>
+      <div class="stat-sfx">+</div>
+      <div class="stat-lbl">Attorney placements closed</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num" data-count="1">0</div>
+      <div class="stat-sfx">industry</div>
+      <div class="stat-lbl">Legal recruitment, exclusively</div>
     </div>
   </section>
 
-  <!-- Work / Case studies -->
+  <!-- Placements / Case studies -->
   <section class="section" id="work">
     <div class="section-head">
-      <span class="eyebrow"><span class="eyebrow-num">03</span> Selected Work</span>
+      <span class="eyebrow"><span class="eyebrow-num">03</span> Selected Placements</span>
       <h2 class="section-title">
         Searches we're <em>quietly</em> proud of.
       </h2>
+      <p class="section-lede">
+        Every search is confidential. The summaries below are representative —
+        names and identifying details are withheld by design.
+      </p>
     </div>
 
     <div class="cases">
@@ -255,11 +274,11 @@
         <div class="case-index">/ 01</div>
         <div class="case-body">
           <div class="case-meta">
-            <span>Private Credit · $8B AUM</span>
+            <span>V10 · Corporate / M&amp;A</span>
             <span>New York</span>
           </div>
-          <h3>Founding Head of Capital Formation</h3>
-          <p>Built a debut fundraising function from zero; first close inside nine months of placement.</p>
+          <h3>Lateral Partner, Private Equity Transactions</h3>
+          <p>Recruited a senior partner with a nine-figure portable book from a peer V10 after a six-month confidential process.</p>
         </div>
         <div class="case-arrow" aria-hidden="true">→</div>
       </article>
@@ -268,11 +287,11 @@
         <div class="case-index">/ 02</div>
         <div class="case-body">
           <div class="case-meta">
-            <span>Growth Equity · Fund III</span>
-            <span>London</span>
+            <span>AmLaw 50 · Litigation</span>
+            <span>Washington, D.C.</span>
           </div>
-          <h3>Partner, European Origination</h3>
-          <p>Sourced an operator-turned-investor from a Tier-1 sponsor with a sector thesis the fund was building toward.</p>
+          <h3>Five-Partner Group Move, White Collar &amp; Investigations</h3>
+          <p>Managed a multi-party lateral move of a full practice group, including conflicts resolution and day-one integration planning.</p>
         </div>
         <div class="case-arrow" aria-hidden="true">→</div>
       </article>
@@ -281,11 +300,11 @@
         <div class="case-index">/ 03</div>
         <div class="case-body">
           <div class="case-meta">
-            <span>Fintech · Series C</span>
-            <span>SF / Remote</span>
+            <span>Fortune 100 · In-House</span>
+            <span>New York</span>
           </div>
-          <h3>Chief Financial Officer</h3>
-          <p>IPO-ready CFO recruited ahead of a Series C; company hit profitability 14 months later.</p>
+          <h3>General Counsel, Global Technology Business</h3>
+          <p>Placed an AmLaw 20 partner into a GC role, closing the search in eleven weeks against a competitive in-house market.</p>
         </div>
         <div class="case-arrow" aria-hidden="true">→</div>
       </article>
@@ -294,11 +313,11 @@
         <div class="case-index">/ 04</div>
         <div class="case-body">
           <div class="case-meta">
-            <span>Infrastructure · $22B platform</span>
-            <span>Singapore</span>
+            <span>AmLaw 100 · Finance</span>
+            <span>New York · London</span>
           </div>
-          <h3>Head of Asia, Digital Infrastructure</h3>
-          <p>Four-market search landed in 11 weeks; retained for the second hire inside the same team.</p>
+          <h3>Senior Associate Class, Private Credit</h3>
+          <p>Staffed an expanding private-credit practice with six associates across two offices over a single recruiting cycle.</p>
         </div>
         <div class="case-arrow" aria-hidden="true">→</div>
       </article>
@@ -309,12 +328,12 @@
   <section class="quote">
     <blockquote>
       <p>
-        <span class="qmark">“</span>They didn't send us a list. They sent us
-        <em>one person</em> — and she's now running the platform.<span class="qmark">”</span>
+        <span class="qmark">“</span>They didn't send us ten résumés. They sent us
+        <em>the right partner</em> — and she's now leading the practice.<span class="qmark">”</span>
       </p>
       <footer>
-        <span class="q-name">Managing Partner</span>
-        <span class="q-firm">— $14B private credit platform</span>
+        <span class="q-name">Hiring Partner</span>
+        <span class="q-firm">— AmLaw 50 firm, New York</span>
       </footer>
     </blockquote>
   </section>
@@ -323,23 +342,23 @@
   <section class="section" id="insights">
     <div class="section-head">
       <span class="eyebrow"><span class="eyebrow-num">04</span> Insights</span>
-      <h2 class="section-title">Field notes from the market.</h2>
+      <h2 class="section-title">Field notes from the legal market.</h2>
     </div>
 
     <div class="insights-grid">
       <a class="insight" href="#">
-        <span class="insight-tag">Comp · Apr 2026</span>
-        <h3>The 2026 IR comp letter: base, carry, and the disappearing guarantee.</h3>
+        <span class="insight-tag">Compensation · 2026</span>
+        <h3>Associate base, bonus, and the new specialty bumps: what 2026 actually pays.</h3>
         <span class="insight-read">Read →</span>
       </a>
       <a class="insight" href="#">
-        <span class="insight-tag">Org Design · Mar 2026</span>
-        <h3>Why credit platforms keep mis-hiring their first Head of Origination.</h3>
+        <span class="insight-tag">Partner Moves · 2026</span>
+        <h3>Why lateral partners are leaving in Q1 — and what firms get wrong in the counter.</h3>
         <span class="insight-read">Read →</span>
       </a>
       <a class="insight" href="#">
-        <span class="insight-tag">Market · Feb 2026</span>
-        <h3>Asia secondaries: where the talent is actually sitting in 2026.</h3>
+        <span class="insight-tag">Market · 2026</span>
+        <h3>Private funds, private credit, and AI: the three practices hiring hardest this year.</h3>
         <span class="insight-read">Read →</span>
       </a>
     </div>
@@ -349,36 +368,44 @@
   <section class="section" id="team">
     <div class="section-head">
       <span class="eyebrow"><span class="eyebrow-num">05</span> Team</span>
-      <h2 class="section-title">Partners, not pipelines.</h2>
+      <h2 class="section-title">Senior recruiters, always.</h2>
       <p class="section-lede">
-        A small, senior team. Every search is personally led by someone whose name is above the door.
+        A small, senior bench. Every search is personally led — never handed down to a junior.
       </p>
     </div>
 
     <div class="team-grid">
       <article class="member">
-        <div class="member-photo" aria-hidden="true"><span>AR</span></div>
-        <h3>Alex Romero</h3>
-        <div class="member-role">Founding Partner · Private Capital</div>
-        <p>Formerly IR at a Tier-1 buyout fund. Leads mandates across PE and private credit.</p>
+        <div class="member-photo" aria-hidden="true">
+          <svg class="member-mono"><use href="#lp-mark"/></svg>
+        </div>
+        <h3>Managing Partner</h3>
+        <div class="member-role">Founder · New York</div>
+        <p>Leads partner-level and group-move mandates for V10 and AmLaw 100 firms. NALSC member.</p>
       </article>
       <article class="member">
-        <div class="member-photo" aria-hidden="true"><span>MS</span></div>
-        <h3>Mira Shah</h3>
-        <div class="member-role">Partner · Fintech &amp; Growth</div>
-        <p>Ex-operator (Series B to exit). Builds leadership teams for venture- and growth-backed firms.</p>
+        <div class="member-photo" aria-hidden="true">
+          <svg class="member-mono"><use href="#lp-mark"/></svg>
+        </div>
+        <h3>Partner, Associate Practice</h3>
+        <div class="member-role">New York</div>
+        <p>Former AmLaw 100 attorney. Oversees associate placement across corporate, finance, and litigation.</p>
       </article>
       <article class="member">
-        <div class="member-photo" aria-hidden="true"><span>JK</span></div>
-        <h3>Jin Kato</h3>
-        <div class="member-role">Partner · Asia</div>
-        <p>Based in Singapore. Covers APAC mandates across infrastructure, credit, and family capital.</p>
+        <div class="member-photo" aria-hidden="true">
+          <svg class="member-mono"><use href="#lp-mark"/></svg>
+        </div>
+        <h3>Partner, In-House Practice</h3>
+        <div class="member-role">New York</div>
+        <p>GC, Deputy GC, and senior in-house searches for Fortune 500 legal departments.</p>
       </article>
       <article class="member">
-        <div class="member-photo" aria-hidden="true"><span>DE</span></div>
-        <h3>Dani Ellington</h3>
-        <div class="member-role">Partner · Advisory</div>
-        <p>Leads comp benchmarking and org-design work. 15 years inside two global search firms.</p>
+        <div class="member-photo" aria-hidden="true">
+          <svg class="member-mono"><use href="#lp-mark"/></svg>
+        </div>
+        <h3>Senior Advisor</h3>
+        <div class="member-role">Advisory</div>
+        <p>Compensation benchmarking, offer structuring, and post-move integration counsel.</p>
       </article>
     </div>
   </section>
@@ -389,24 +416,24 @@
       <div class="cta-left">
         <span class="eyebrow"><span class="eyebrow-num">06</span> Start here</span>
         <h2 class="section-title">
-          A short call.<br/>That's how it starts.
+          A confidential<br/>conversation.
         </h2>
         <p class="section-lede">
-          Whether you're building a team or quietly considering your next move,
-          a thirty-minute conversation costs nothing and usually clarifies a lot.
+          Whether you're building a practice or quietly considering your next move,
+          a thirty-minute call costs nothing and usually clarifies a lot.
         </p>
       </div>
 
       <div class="cta-right">
-        <a class="cta-box firms-box" href="mailto:hire@lionpointpartners.com" id="firms-cta">
-          <span class="cta-kicker">For Firms</span>
-          <span class="cta-head">Brief a partner →</span>
-          <span class="cta-mail">hire@lionpointpartners.com</span>
+        <a class="cta-box firms-box" href="mailto:info@lionpointpartners.com?subject=Retained%20Search%20Inquiry" id="firms-cta">
+          <span class="cta-kicker">For Law Firms</span>
+          <span class="cta-head">Retain a search →</span>
+          <span class="cta-mail">info@lionpointpartners.com</span>
         </a>
-        <a class="cta-box cands-box" href="mailto:careers@lionpointpartners.com" id="candidates-cta">
-          <span class="cta-kicker">For Candidates</span>
-          <span class="cta-head">Have a conversation →</span>
-          <span class="cta-mail">careers@lionpointpartners.com</span>
+        <a class="cta-box cands-box" href="mailto:candidates@lionpointpartners.com?subject=Confidential%20Introduction" id="candidates-cta">
+          <span class="cta-kicker">For Attorneys</span>
+          <span class="cta-head">Confidential introduction →</span>
+          <span class="cta-mail">candidates@lionpointpartners.com</span>
         </a>
       </div>
     </div>
@@ -416,42 +443,67 @@
 <footer class="foot">
   <div class="foot-top">
     <a class="brand" href="#top">
-      <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
-        <path d="M20 3 L34 13 L28 35 L12 35 L6 13 Z" fill="none" stroke="currentColor" stroke-width="1.6"/>
-        <circle cx="20" cy="20" r="3" fill="currentColor"/>
-      </svg>
-      <span class="brand-text">Lionpoint<span class="brand-dot">.</span>Partners</span>
+      <svg class="brand-mark" aria-hidden="true"><use href="#lp-mark"/></svg>
+      <span class="brand-bar" aria-hidden="true"></span>
+      <span class="brand-text">LIONPOINT</span>
     </a>
     <div class="foot-cols">
       <div>
-        <h4>Practice</h4>
-        <a href="#practice">Executive Search</a>
-        <a href="#practice">Investor Relations</a>
-        <a href="#practice">Investment Teams</a>
-        <a href="#practice">Advisory</a>
+        <h4>Services</h4>
+        <a href="#practice">Partner Recruitment</a>
+        <a href="#practice">Associate Placement</a>
+        <a href="#practice">Group &amp; Lateral Teams</a>
+        <a href="#practice">In-House &amp; GC</a>
       </div>
       <div>
         <h4>Firm</h4>
         <a href="#team">Team</a>
-        <a href="#work">Work</a>
+        <a href="#work">Placements</a>
         <a href="#insights">Insights</a>
         <a href="#contact">Contact</a>
       </div>
       <div>
-        <h4>Offices</h4>
-        <a href="#contact">New York</a>
-        <a href="#contact">London</a>
-        <a href="#contact">Singapore</a>
+        <h4>Office</h4>
+        <a href="#contact">New York City</a>
+        <a href="mailto:info@lionpointpartners.com">info@lionpointpartners.com</a>
       </div>
     </div>
   </div>
 
-  <div class="foot-mega" aria-hidden="true">Lionpoint</div>
+  <!-- NALSC membership badge -->
+  <div class="foot-nalsc" aria-label="NALSC Member">
+    <div class="nalsc-badge">
+      <svg class="nalsc-mark" viewBox="0 0 80 80" aria-hidden="true">
+        <defs>
+          <linearGradient id="nalscGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#F5B149"/>
+            <stop offset=".55" stop-color="#E8A15B"/>
+            <stop offset="1" stop-color="#B06F1F"/>
+          </linearGradient>
+        </defs>
+        <g>
+          <rect x="10" y="10" width="10" height="42" fill="url(#nalscGrad)"/>
+          <rect x="23" y="10" width="10" height="42" fill="url(#nalscGrad)"/>
+          <rect x="36" y="10" width="10" height="42" fill="url(#nalscGrad)"/>
+          <rect x="49" y="10" width="10" height="42" fill="url(#nalscGrad)"/>
+          <rect x="62" y="10" width="10" height="42" fill="url(#nalscGrad)"/>
+        </g>
+        <path d="M8 56 Q40 66 74 56" fill="none" stroke="#111" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      <div class="nalsc-text">
+        <span class="nalsc-kicker">Member</span>
+        <span class="nalsc-name">National Association of<br/>Legal Search Consultants</span>
+        <span class="nalsc-sub">NALSC Code of Ethics<sup>®</sup></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot-mega" aria-hidden="true">LIONPOINT</div>
 
   <div class="foot-bottom">
-    <span>© 2026 Lionpoint Partners LLC</span>
-    <span>Privacy · Terms · Modern Slavery Statement</span>
-    <span>Redesigned 2026</span>
+    <span>© <span id="yr">2026</span> Lionpoint Partners LLC</span>
+    <span>Confidentiality · NALSC Code of Ethics · Privacy</span>
+    <span>New York City</span>
   </div>
 </footer>
 

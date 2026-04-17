@@ -82,15 +82,26 @@ em { font-style: italic; font-family: var(--font-display); font-weight: 400; }
 }
 
 .brand {
-  display: inline-flex; align-items: center; gap: 10px;
+  display: inline-flex; align-items: center; gap: 12px;
   color: var(--ink);
 }
-.brand-mark { width: 26px; height: 26px; color: var(--accent); }
+.brand-mark {
+  width: 32px; height: 32px;
+  color: var(--accent);
+  flex: 0 0 auto;
+}
+.brand-bar {
+  width: 1px; height: 22px;
+  background: currentColor;
+  opacity: .4;
+}
 .brand-text {
   font-family: var(--font-display);
-  font-weight: 500; letter-spacing: -0.01em; font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  font-size: 17px;
+  text-transform: uppercase;
 }
-.brand-dot { color: var(--accent); }
 
 .nav-links {
   display: flex; gap: 28px; justify-content: center;
@@ -546,17 +557,17 @@ body[data-audience="candidates"] .candidates-card {
 .member:hover { transform: translateY(-6px); border-color: var(--accent); }
 .member-photo {
   aspect-ratio: 1 / 1; border-radius: 10px;
-  background: radial-gradient(120% 120% at 20% 10%, rgba(232,161,91,0.35), rgba(0,0,0,0) 60%), #1E1C1A;
+  background: radial-gradient(120% 120% at 20% 10%, rgba(232,161,91,0.22), rgba(0,0,0,0) 60%), #1E1C1A;
   display: grid; place-items: center;
-  font-family: var(--font-display); font-size: 48px; color: var(--accent);
-  letter-spacing: -0.02em;
+  color: var(--accent);
   margin-bottom: 20px;
   position: relative; overflow: hidden;
 }
 .member-photo::after {
   content: ""; position: absolute; inset: 0;
-  background: radial-gradient(60% 60% at 80% 80%, rgba(232,161,91,0.2), transparent 70%);
+  background: radial-gradient(60% 60% at 80% 80%, rgba(232,161,91,0.18), transparent 70%);
 }
+.member-mono { width: 54%; height: 54%; color: var(--accent); position: relative; z-index: 1; }
 .member h3 {
   font-family: var(--font-display); font-weight: 400;
   font-size: 22px; letter-spacing: -0.02em; margin: 0 0 4px;
@@ -632,6 +643,36 @@ body[data-audience="candidates"] .candidates-card {
   transition: color .3s var(--ease);
 }
 .foot-cols a:hover { color: var(--ink); }
+
+/* NALSC badge */
+.foot-nalsc {
+  max-width: var(--maxw); margin: 0 auto;
+  padding: 24px var(--pad);
+  border-top: 1px solid var(--line);
+}
+.nalsc-badge {
+  display: inline-flex; align-items: center; gap: 18px;
+  padding: 14px 20px;
+  border: 1px solid var(--line-2);
+  border-radius: 12px;
+  background: rgba(245,239,228,0.02);
+  transition: border-color .4s var(--ease), background .4s var(--ease);
+}
+.nalsc-badge:hover { border-color: var(--accent); background: rgba(232,161,91,0.04); }
+.nalsc-mark { width: 52px; height: 52px; flex: 0 0 auto; }
+.nalsc-text { display: grid; gap: 2px; }
+.nalsc-kicker {
+  font-family: var(--font-mono); font-size: 10px; color: var(--accent);
+  letter-spacing: .18em; text-transform: uppercase;
+}
+.nalsc-name {
+  font-family: var(--font-display); font-size: 14px; line-height: 1.2;
+  color: var(--ink); letter-spacing: 0.01em;
+}
+.nalsc-sub {
+  font-family: var(--font-mono); font-size: 10px; color: var(--ink-dim);
+  letter-spacing: .08em; text-transform: uppercase; margin-top: 2px;
+}
 
 .foot-mega {
   text-align: center;
