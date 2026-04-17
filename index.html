@@ -473,27 +473,43 @@
   <!-- NALSC membership badge -->
   <div class="foot-nalsc" aria-label="NALSC Member">
     <div class="nalsc-badge">
-      <svg class="nalsc-mark" viewBox="0 0 80 80" aria-hidden="true">
+      <svg class="nalsc-mark" viewBox="0 0 200 150" aria-hidden="true" role="img">
         <defs>
           <linearGradient id="nalscGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#F5B149"/>
-            <stop offset=".55" stop-color="#E8A15B"/>
-            <stop offset="1" stop-color="#B06F1F"/>
+            <stop offset="0"    stop-color="#F7C058"/>
+            <stop offset=".45"  stop-color="#E89A2C"/>
+            <stop offset="1"    stop-color="#8E4E10"/>
+          </linearGradient>
+          <linearGradient id="nalscHighlight" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0"    stop-color="rgba(255,255,255,0.55)"/>
+            <stop offset=".5"   stop-color="rgba(255,255,255,0)"/>
           </linearGradient>
         </defs>
+        <!-- 5 vertical gold bars -->
         <g>
-          <rect x="10" y="10" width="10" height="42" fill="url(#nalscGrad)"/>
-          <rect x="23" y="10" width="10" height="42" fill="url(#nalscGrad)"/>
-          <rect x="36" y="10" width="10" height="42" fill="url(#nalscGrad)"/>
-          <rect x="49" y="10" width="10" height="42" fill="url(#nalscGrad)"/>
-          <rect x="62" y="10" width="10" height="42" fill="url(#nalscGrad)"/>
+          <rect x="14"  y="6" width="28" height="80" fill="url(#nalscGrad)"/>
+          <rect x="48"  y="6" width="28" height="80" fill="url(#nalscGrad)"/>
+          <rect x="82"  y="6" width="28" height="80" fill="url(#nalscGrad)"/>
+          <rect x="116" y="6" width="28" height="80" fill="url(#nalscGrad)"/>
+          <rect x="150" y="6" width="28" height="80" fill="url(#nalscGrad)"/>
+          <!-- subtle top highlight -->
+          <rect x="14"  y="6" width="28" height="34" fill="url(#nalscHighlight)"/>
+          <rect x="48"  y="6" width="28" height="34" fill="url(#nalscHighlight)"/>
+          <rect x="82"  y="6" width="28" height="34" fill="url(#nalscHighlight)"/>
+          <rect x="116" y="6" width="28" height="34" fill="url(#nalscHighlight)"/>
+          <rect x="150" y="6" width="28" height="34" fill="url(#nalscHighlight)"/>
         </g>
-        <path d="M8 56 Q40 66 74 56" fill="none" stroke="#111" stroke-width="2.2" stroke-linecap="round"/>
+        <!-- Signature curved underline -->
+        <path d="M6 94 Q100 118 194 94" fill="none" stroke="#111" stroke-width="3.5" stroke-linecap="round"/>
+        <!-- NALSC letters -->
+        <text x="100" y="138" text-anchor="middle"
+              font-family="Inter, Helvetica, Arial, sans-serif" font-weight="800"
+              font-size="34" letter-spacing="6" fill="#111">NALSC</text>
       </svg>
       <div class="nalsc-text">
-        <span class="nalsc-kicker">Member</span>
+        <span class="nalsc-kicker">Proud Member</span>
         <span class="nalsc-name">National Association of<br/>Legal Search Consultants</span>
-        <span class="nalsc-sub">NALSC Code of Ethics<sup>®</sup></span>
+        <span class="nalsc-sub">Committed to the NALSC Code of Ethics<sup>®</sup></span>
       </div>
     </div>
   </div>
