@@ -502,17 +502,20 @@ em { font-style: italic; font-family: var(--font-display); font-weight: 400; }
   position: relative; z-index: 1;
 }
 .expect-list li {
-  display: grid; grid-template-columns: 16px 1fr; gap: 14px;
-  align-items: baseline;
+  position: relative;
+  padding-left: 26px;
   color: rgba(241,233,218,0.88);
   font-size: 16px;
   line-height: 1.5;
 }
 .expect-list li::before {
   content: "";
-  width: 7px; height: 7px; border-radius: 50%;
+  position: absolute;
+  left: 4px;
+  top: 0.6em;
+  width: 7px; height: 7px;
+  border-radius: 50%;
   background: var(--accent);
-  margin-top: 8px;
 }
 
 @media (max-width: 860px) {
