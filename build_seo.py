@@ -121,24 +121,34 @@ def page(title,desc,canonical,crumbs,body):
       f'<meta property="og:type" content="website"><meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:url" content="{canonical}"><meta property="og:image" content="{DOMAIN}/og-default.png"><meta name="twitter:card" content="summary_large_image">'
       f'<script type="application/ld+json">{json.dumps(cl)}</script></head><body class="pmx-page">{nav()}<main class="pmx-wrap">{body}{cta_section()}</main>{foot()}</body></html>')
 
-def build_all(repo):
-    arts=parse_pulse(repo)
-    pages=[]  # (relpath, html) in release order
-    # 0) index pages
-    pl=[(p[1]+" Partner Recruiting",f"/practices/{p[0]}/") for p in PRACTICES]
+def _ipath(url): return url.strip("/")+"/index.html"
+def live(links, rel): return [(t,u) for t,u in links if _ipath(u) in rel]
+def related_section(num, eyebrow, title, links):
+    if not links: return ""
+    return (f'<section class="section" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">{num}</span> {eyebrow}</span>'
+            f'<h2 class="section-title">{title}</h2></div>{related(eyebrow,links)}</section>')
+def page_order():
+    o=["practices/index.html","locations/index.html"]
+    o+=[f"practices/{p[0]}/index.html" for p in PRACTICES]
+    o+=[f"locations/{c[0]}/index.html" for c in CITIES]
+    o+=[f"practices/{p[0]}/{c[0]}/index.html" for c in CITIES for p in PRACTICES]
+    return o
+
+def build_all(repo, rel):
+    arts=parse_pulse(repo); pages=[]
+    pl=live([(p[1]+" Partner Recruiting",f"/practices/{p[0]}/") for p in PRACTICES], rel)
     pages.append(("practices/index.html", page("Legal Practice Recruiting | Lionpoint Partners",
         "Confidential partner and group recruiting across M&A, private equity, real estate, litigation, finance, IP, and more, for AmLaw 200 firms nationwide.",
         DOMAIN+"/practices/",[("Home","/"),("Practices","/practices/")],
-        f'<section class="section"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">00</span> Practices</span><h2 class="section-title">Recruiting by <em>practice.</em></h2><p class="section-lede">We run confidential partner and group searches across the practices below, nationwide and in your market.</p></div><section style="padding-top:0">{related("All practices",pl)}</section></section>')))
-    cl=[("Legal Recruiting in "+c[1],f"/locations/{c[0]}/") for c in CITIES]
+        f'<section class="section"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">00</span> Practices</span><h2 class="section-title">Recruiting by <em>practice.</em></h2><p class="section-lede">We run confidential partner and group searches across the practices below, nationwide and in your market. You can also browse <a href="/locations/">recruiting by city</a>.</p></div><section style="padding-top:0">{related("All practices",pl)}</section></section>')))
+    cl=live([("Legal Recruiting in "+c[1],f"/locations/{c[0]}/") for c in CITIES], rel)
     pages.append(("locations/index.html", page("Legal Recruiters by City | Lionpoint Partners",
         "Confidential partner and group recruiting in New York, DC, Boston, LA, Chicago, San Francisco, Houston, Miami, and more.",
         DOMAIN+"/locations/",[("Home","/"),("Locations","/locations/")],
-        f'<section class="section"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">00</span> Locations</span><h2 class="section-title">Recruiting by <em>market.</em></h2><p class="section-lede">We work nationally. Explore the markets where we run partner and group searches.</p></div><section style="padding-top:0">{related("All markets",cl)}</section></section>')))
-    # 1) practice pages
+        f'<section class="section"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">00</span> Locations</span><h2 class="section-title">Recruiting by <em>market.</em></h2><p class="section-lede">We work nationally. Explore the markets where we run partner and group searches, or browse <a href="/practices/">recruiting by practice</a>.</p></div><section style="padding-top:0">{related("All markets",cl)}</section></section>')))
     for slug,name,kw,items,mkt,pkw in PRACTICES:
         rm=recent_section(recent_moves(arts,pkw))
-        city_links=[(f"{name} in {c[1]}",f"/practices/{slug}/{c[0]}/") for c in CITIES]
+        city_links=live([(f"{name} in {c[1]}",f"/practices/{slug}/{c[0]}/") for c in CITIES], rel)
         faqs=[(f"Do you handle confidential {kw} partner moves?","Yes. Every search is confidential and nothing goes out without your approval."),
               ("How do I know if my practice is portable enough to move?","Portability matters more than any single number. We give you an honest read on how your book and relationships are likely to be valued."),
               ("Do you represent firms or candidates?","Both. We run retained searches for firms and represent individual partners and groups exploring a move.")]
@@ -149,34 +159,31 @@ def build_all(repo):
           f'{rm}'
           f'<section class="section approach" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">03</span> The Process</span><h2 class="section-title">Three steps, <em>handled end to end.</em></h2></div>{process()}</section>'
           f'<section class="section" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">04</span> Questions</span><h2 class="section-title">{esc(name)} moves, <em>answered.</em></h2></div>{faq_block(faqs)}</section>'
-          f'<section class="section" style="padding-top:0">{related(name+" recruiting by city",city_links)}</section>')
+          f'{related_section("05","Where we recruit",esc(name)+" by <em>city.</em>",city_links)}')
         pages.append((f"practices/{slug}/index.html", page(f"{name} Partner Recruiting | Lionpoint Partners",
             f"Lionpoint Partners recruits {kw} partners and groups for AmLaw 200 firms and boutiques nationwide. Confidential lateral search.",
             DOMAIN+f"/practices/{slug}/",[("Home","/"),("Practices","/practices/"),(name,f"/practices/{slug}/")],body)))
-    # 2) city pages
     for cslug,cname,angle,emph,ckw in CITIES:
         rm=recent_section(recent_moves(arts,None,ckw))
-        prac_links=[(f"{PRAC[ps][1]} in {cname}",f"/practices/{ps}/{cslug}/") for ps in [p[0] for p in PRACTICES]]
+        prac_links=live([(f"{PRAC[ps][1]} in {cname}",f"/practices/{ps}/{cslug}/") for ps in [p[0] for p in PRACTICES]], rel)
         emph_names=", ".join(PRAC[e][1] for e in emph)
         faqs=[(f"Do you recruit partners in {cname}?",f"Yes. We run confidential partner and group searches across practices with AmLaw 200 firms and boutiques in {cname} and nationwide."),
               (f"Which practices are most active in {cname}?",f"In {cname} we see particular activity in {emph_names}, though we cover the full range of practices."),
               ("Do you represent firms or candidates?","Both. We run retained searches for firms and represent partners and groups exploring a move.")]
         body=(f'<section class="section"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">{cname[:2].upper()}</span> Market</span><h1 class="section-title">Legal recruiting in <em>{esc(cname)}.</em></h1>'
           f'<p class="section-lede">{esc(cname)} is {esc(angle)}. We represent partners and practice groups on confidential lateral moves to AmLaw 200 firms and leading boutiques in {esc(cname)}, with particular depth in {esc(emph_names)}.</p></div>{ctas(cname.split(",")[0].replace(" ","%20"))}</section>'
-          f'<section class="section" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">01</span> Practices in {esc(cname)}</span><h2 class="section-title">Searches we run <em>here.</em></h2></div>{related("By practice",prac_links)}</section>'
+          f'{related_section("01","Practices in "+cname,"Searches we run <em>here.</em>",prac_links)}'
           f'{rm}'
           f'<section class="section approach" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">02</span> The Process</span><h2 class="section-title">Three steps, <em>handled end to end.</em></h2></div>{process()}</section>'
           f'<section class="section" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">03</span> Questions</span><h2 class="section-title">{esc(cname)} moves, <em>answered.</em></h2></div>{faq_block(faqs)}</section>')
         pages.append((f"locations/{cslug}/index.html", page(f"Legal Recruiters in {cname} | Lionpoint Partners",
             f"Lionpoint Partners recruits partners and practice groups for AmLaw 200 firms and boutiques in {cname}. Confidential lateral search.",
             DOMAIN+f"/locations/{cslug}/",[("Home","/"),("Locations","/locations/"),(cname,f"/locations/{cslug}/")],body)))
-    # 3) combos (city-major order)
     for cslug,cname,angle,emph,ckw in CITIES:
         for slug,name,kw,items,mkt,pkw in PRACTICES:
             rm=recent_section(recent_moves(arts,pkw,ckw))
-            is_emph=slug in emph
-            note=(f"It is one of the practices we see hiring most actively in {cname}." if is_emph else f"Demand moves with the local market, and a portable book travels well in {cname}.")
-            sibs=[(f"{PRAC[ps][1]} in {cname}",f"/practices/{ps}/{cslug}/") for ps in emph if ps!=slug][:3]
+            note=(f"It is one of the practices we see hiring most actively in {cname}." if slug in emph else f"Demand moves with the local market, and a portable book travels well in {cname}.")
+            sibs=live([(f"{PRAC[ps][1]} in {cname}",f"/practices/{ps}/{cslug}/") for ps in emph if ps!=slug][:3], rel)
             rl=[(f"All {name} searches",f"/practices/{slug}/"),(f"All {cname} searches",f"/locations/{cslug}/")]+sibs
             faqs=[(f"Do you recruit {kw} partners in {cname}?",f"Yes. We run confidential {kw} partner and group searches with AmLaw 200 firms and boutiques in {cname} and nationwide."),
                   (f"What makes {cname} distinct for {kw}?",f"{cname} is {angle}, which shapes where the demand sits and which firms are hiring in {kw}."),
@@ -188,7 +195,7 @@ def build_all(repo):
               f'{rm}'
               f'<section class="section approach" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">03</span> The Process</span><h2 class="section-title">Three steps, <em>handled end to end.</em></h2></div>{process()}</section>'
               f'<section class="section" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">04</span> Questions</span><h2 class="section-title">{esc(name)} in {esc(cname)}, <em>answered.</em></h2></div>{faq_block(faqs)}</section>'
-              f'<section class="section" style="padding-top:0">{related("Related searches",rl)}</section>')
+              f'{related_section("05","Related searches","Explore <em>more.</em>",rl)}')
             pages.append((f"practices/{slug}/{cslug}/index.html", page(f"{name} Partner Recruiting in {cname} | Lionpoint Partners",
                 f"{name} partner and group recruiting in {cname}. Confidential lateral search with AmLaw 200 firms and boutiques. Lionpoint Partners.",
                 DOMAIN+f"/practices/{slug}/{cslug}/",[("Home","/"),("Practices","/practices/"),(name,f"/practices/{slug}/"),(cname,f"/practices/{slug}/{cslug}/")],body)))
@@ -200,6 +207,7 @@ CSS='''.pmx-page{background:var(--bg);color:var(--ink)}
 .faq-item{padding:24px 0;border-bottom:1px solid var(--line)}
 .faq-item h3{font-family:var(--font-display);font-weight:400;font-size:clamp(18px,2vw,24px);letter-spacing:-0.01em;margin:0 0 8px}
 .faq-item p{color:var(--ink-dim);font-size:16px;line-height:1.7;margin:0;max-width:780px}
+.pmx-wrap a[href]{}
 .rel-wrap{max-width:var(--maxw);margin:0 auto}
 .rel-eyebrow{font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--ink-mute);margin-bottom:16px}
 .rel-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
@@ -212,30 +220,25 @@ CSS='''.pmx-page{background:var(--bg);color:var(--ink)}
 '''
 
 def main():
-    ap=argparse.ArgumentParser()
-    ap.add_argument("--repo",required=True)
-    ap.add_argument("--advance",type=int,default=0)
-    ap.add_argument("--release-all",action="store_true")
+    ap=argparse.ArgumentParser(); ap.add_argument("--repo",required=True); ap.add_argument("--advance",type=int,default=0); ap.add_argument("--release-all",action="store_true")
     a=ap.parse_args()
-    pages=build_all(a.repo)
-    total=len(pages)
-    mf=os.path.join(a.repo,"seo-release.json")
-    released=0
+    order=page_order(); total=len(order)
+    mf=os.path.join(a.repo,"seo-release.json"); released=0
     if os.path.exists(mf):
         try: released=json.load(open(mf)).get("released",0)
         except: released=0
-    released = total if a.release_all else min(total, released + max(0,a.advance))
-    # regenerate ALL released pages (keeps Recent moves fresh), write files
-    for path,h in pages[:released]:
+    released = total if a.release_all else min(total, released+max(0,a.advance))
+    rel=set(order[:released])
+    pages=build_all(a.repo, rel)
+    bypath={p:h for p,h in pages}
+    for path in order[:released]:
         full=os.path.join(a.repo,path); os.makedirs(os.path.dirname(full),exist_ok=True)
-        open(full,"w",encoding="utf-8").write(h)
+        open(full,"w",encoding="utf-8").write(bypath[path])
     open(os.path.join(a.repo,"practices.css"),"w").write(CSS)
-    # sitemap of released pages
-    locs=[p[0].replace("index.html","") for p in pages[:released]]
     sm='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-    sm+="".join(f'  <url><loc>{DOMAIN}/{l}</loc></url>\n' for l in locs)+"</urlset>\n"
+    sm+="".join(f'  <url><loc>{DOMAIN}/{path.replace("index.html","")}</loc></url>\n' for path in order[:released])+"</urlset>\n"
     open(os.path.join(a.repo,"sitemap-seo.xml"),"w").write(sm)
     json.dump({"released":released,"total":total},open(mf,"w"))
-    print(f"released {released}/{total} pages (this run regenerated all released, Recent moves refreshed)")
+    print(f"released {released}/{total}")
 
 if __name__=="__main__": main()
