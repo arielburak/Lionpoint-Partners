@@ -426,13 +426,16 @@ PULSE_CSS = """/* Market Pulse section - matches Lionpoint design system */
 def patch_homepage(repo, link_nav=False):
     p = os.path.join(repo, "index.html")
     h = open(p, encoding="utf-8").read()
-    # 1) nav link (only in linked mode)
-    if link_nav and "/market-pulse/" not in h:
-        h = h.replace('    <a href="#work">Placements</a>\n',
-                      '    <a href="#work">Placements</a>\n    <a href="/market-pulse/">Market Pulse</a>\n', 1)
-        # footer Firm column
-        h = h.replace('        <a href="#contact">Contact</a>\n      </div>\n      <div>\n        <h4>Office</h4>',
-                      '        <a href="#contact">Contact</a>\n        <a href="/market-pulse/">Market Pulse</a>\n      </div>\n      <div>\n        <h4>Office</h4>', 1)
+    # 1a) footer "Firm" column link: ALWAYS present (low-profile; aids crawl + internal linking)
+    foot_old = '        <a href="#contact">Contact</a>\n      </div>\n      <div>\n        <h4>Office</h4>'
+    foot_new = '        <a href="#contact">Contact</a>\n        <a href="/market-pulse/">Market Pulse</a>\n      </div>\n      <div>\n        <h4>Office</h4>'
+    if foot_new not in h and foot_old in h:
+        h = h.replace(foot_old, foot_new, 1)
+    # 1b) top-nav link: ONLY when going fully public (--link-nav)
+    nav_old = '    <a href="#work">Placements</a>\n'
+    nav_new = '    <a href="#work">Placements</a>\n    <a href="/market-pulse/">Market Pulse</a>\n'
+    if link_nav and nav_new not in h and nav_old in h:
+        h = h.replace(nav_old, nav_new, 1)
     # 2) SEO head block (idempotent)
     if "og:site_name" not in h:
         org = {
