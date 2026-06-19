@@ -439,8 +439,8 @@ def patch_homepage(repo, link_nav=False):
         h = h.replace(fp_old, fp_new, 1)
     # 1a3) footer Locations link
     lp_old = '        <a href="/practices/">Practices</a>\n      </div>'
-    lp_new = '        <a href="/practices/">Practices</a>\n        <a href="/locations/">Locations</a>\n      </div>'
-    if 'href="/locations/">Locations</a>' not in h and lp_old in h:
+    lp_new = '        <a href="/practices/">Practices</a>\n        <a href="/markets/">Markets</a>\n      </div>'
+    if 'href="/markets/">Markets</a>' not in h and lp_old in h:
         h = h.replace(lp_old, lp_new, 1)
     # 1b) top-nav link: ONLY when going fully public (--link-nav)
     nav_old = '    <a href="#work">Placements</a>\n'

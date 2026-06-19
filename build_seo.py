@@ -128,9 +128,9 @@ def related_section(num, eyebrow, title, links):
     return (f'<section class="section" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">{num}</span> {eyebrow}</span>'
             f'<h2 class="section-title">{title}</h2></div>{related(eyebrow,links)}</section>')
 def page_order():
-    o=["practices/index.html","locations/index.html"]
+    o=["practices/index.html","markets/index.html"]
     o+=[f"practices/{p[0]}/index.html" for p in PRACTICES]
-    o+=[f"locations/{c[0]}/index.html" for c in CITIES]
+    o+=[f"markets/{c[0]}/index.html" for c in CITIES]
     o+=[f"practices/{p[0]}/{c[0]}/index.html" for c in CITIES for p in PRACTICES]
     return o
 
@@ -140,12 +140,12 @@ def build_all(repo, rel):
     pages.append(("practices/index.html", page("Legal Practice Recruiting | Lionpoint Partners",
         "Confidential partner and group recruiting across M&A, private equity, real estate, litigation, finance, IP, and more, for AmLaw 200 firms nationwide.",
         DOMAIN+"/practices/",[("Home","/"),("Practices","/practices/")],
-        f'<section class="section"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">00</span> Practices</span><h2 class="section-title">Recruiting by <em>practice.</em></h2><p class="section-lede">We run confidential partner and group searches across the practices below, nationwide and in your market. You can also browse <a href="/locations/">recruiting by city</a>.</p></div><section style="padding-top:0">{related("All practices",pl)}</section></section>')))
-    cl=live([("Legal Recruiting in "+c[1],f"/locations/{c[0]}/") for c in CITIES], rel)
-    pages.append(("locations/index.html", page("Legal Recruiters by City | Lionpoint Partners",
+        f'<section class="section"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">00</span> Practices</span><h2 class="section-title">Recruiting by <em>practice.</em></h2><p class="section-lede">We run confidential partner and group searches across the practices below, nationwide and in your market. You can also browse <a href="/markets/">recruiting by city</a>.</p></div><section style="padding-top:0">{related("All practices",pl)}</section></section>')))
+    cl=live([("Legal Recruiting in "+c[1],f"/markets/{c[0]}/") for c in CITIES], rel)
+    pages.append(("markets/index.html", page("Legal Recruiters by Market | Lionpoint Partners",
         "Confidential partner and group recruiting in New York, DC, Boston, LA, Chicago, San Francisco, Houston, Miami, and more.",
-        DOMAIN+"/locations/",[("Home","/"),("Locations","/locations/")],
-        f'<section class="section"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">00</span> Locations</span><h2 class="section-title">Recruiting by <em>market.</em></h2><p class="section-lede">We work nationally. Explore the markets where we run partner and group searches, or browse <a href="/practices/">recruiting by practice</a>.</p></div><section style="padding-top:0">{related("All markets",cl)}</section></section>')))
+        DOMAIN+"/markets/",[("Home","/"),("Markets","/markets/")],
+        f'<section class="section"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">00</span> Markets</span><h2 class="section-title">Recruiting by <em>market.</em></h2><p class="section-lede">We work nationally. Explore the markets where we run partner and group searches, or browse <a href="/practices/">recruiting by practice</a>.</p></div><section style="padding-top:0">{related("All markets",cl)}</section></section>')))
     for slug,name,kw,items,mkt,pkw in PRACTICES:
         rm=recent_section(recent_moves(arts,pkw))
         city_links=live([(f"{name} in {c[1]}",f"/practices/{slug}/{c[0]}/") for c in CITIES], rel)
@@ -176,15 +176,15 @@ def build_all(repo, rel):
           f'{rm}'
           f'<section class="section approach" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">02</span> The Process</span><h2 class="section-title">Three steps, <em>handled end to end.</em></h2></div>{process()}</section>'
           f'<section class="section" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">03</span> Questions</span><h2 class="section-title">{esc(cname)} moves, <em>answered.</em></h2></div>{faq_block(faqs)}</section>')
-        pages.append((f"locations/{cslug}/index.html", page(f"Legal Recruiters in {cname} | Lionpoint Partners",
+        pages.append((f"markets/{cslug}/index.html", page(f"Legal Recruiters in {cname} | Lionpoint Partners",
             f"Lionpoint Partners recruits partners and practice groups for AmLaw 200 firms and boutiques in {cname}. Confidential lateral search.",
-            DOMAIN+f"/locations/{cslug}/",[("Home","/"),("Locations","/locations/"),(cname,f"/locations/{cslug}/")],body)))
+            DOMAIN+f"/markets/{cslug}/",[("Home","/"),("Markets","/markets/"),(cname,f"/markets/{cslug}/")],body)))
     for cslug,cname,angle,emph,ckw in CITIES:
         for slug,name,kw,items,mkt,pkw in PRACTICES:
             rm=recent_section(recent_moves(arts,pkw,ckw))
             note=(f"It is one of the practices we see hiring most actively in {cname}." if slug in emph else f"Demand moves with the local market, and a portable book travels well in {cname}.")
             sibs=live([(f"{PRAC[ps][1]} in {cname}",f"/practices/{ps}/{cslug}/") for ps in emph if ps!=slug][:3], rel)
-            rl=[(f"All {name} searches",f"/practices/{slug}/"),(f"All {cname} searches",f"/locations/{cslug}/")]+sibs
+            rl=[(f"All {name} searches",f"/practices/{slug}/"),(f"All {cname} searches",f"/markets/{cslug}/")]+sibs
             faqs=[(f"Do you recruit {kw} partners in {cname}?",f"Yes. We run confidential {kw} partner and group searches with AmLaw 200 firms and boutiques in {cname} and nationwide."),
                   (f"What makes {cname} distinct for {kw}?",f"{cname} is {angle}, which shapes where the demand sits and which firms are hiring in {kw}."),
                   (f"How portable does my book need to be to move in {cname}?",f"Portability matters more than a number. We give you an honest read on how your {cname} {kw} practice and relationships are likely to be valued.")]
