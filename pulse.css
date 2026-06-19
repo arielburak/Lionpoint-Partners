@@ -1,0 +1,39 @@
+/* Market Pulse section - matches Lionpoint design system */
+.pulse-page { background: var(--bg); color: var(--ink); }
+.pulse-wrap { max-width: 860px; margin: 0 auto; padding: clamp(40px,7vw,110px) var(--pad) 80px; }
+.pulse-page .nav { position: sticky; top: 0; background: rgba(244,238,226,.85); backdrop-filter: blur(8px); z-index: 50; }
+
+/* hub hero */
+.pulse-hero { max-width: var(--maxw); margin: 0 auto; padding-bottom: clamp(28px,4vw,52px); }
+.pulse-hero .section-title { margin-top: 10px; }
+.pulse-grid { max-width: var(--maxw); margin: 0 auto; }
+.insight { text-decoration: none; color: var(--ink); }
+
+/* article */
+.pulse-breadcrumb { font-family: var(--font-mono); font-size: 12px; letter-spacing:.06em; color: var(--ink-mute); margin-bottom: 28px; }
+.pulse-breadcrumb a { color: var(--ink-dim); text-decoration: none; }
+.pulse-breadcrumb a:hover { color: var(--accent); }
+.pulse-breadcrumb span { margin: 0 8px; color: var(--line-2); }
+.pulse-tag { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing:.16em; color: var(--accent); margin-bottom: 18px; }
+.pulse-h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(32px,5vw,58px); line-height: 1.02; letter-spacing: -0.03em; margin: 0 0 18px; }
+.pulse-date { display:block; font-family: var(--font-mono); font-size: 12px; letter-spacing:.08em; color: var(--ink-mute); margin-bottom: 40px; }
+.pulse-body p { font-family: var(--font-sans); font-size: 18px; line-height: 1.72; color: var(--ink-dim); margin: 0 0 22px; }
+.pulse-body p:first-child { font-size: 20px; color: var(--ink); }
+
+.pulse-sources { margin: 48px 0 0; padding-top: 28px; border-top: 1px solid var(--line); }
+.pulse-sources h2 { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing:.14em; color: var(--ink-mute); font-weight: 500; margin: 0 0 16px; }
+.pulse-sources ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.pulse-sources li { font-size: 14px; line-height: 1.5; color: var(--ink-dim); padding-left: 18px; position: relative; }
+.pulse-sources li::before { content: "/"; position: absolute; left: 0; color: var(--accent); font-family: var(--font-mono); }
+.pulse-sources a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line-2); }
+.pulse-sources a:hover { color: var(--accent); border-color: var(--accent); }
+
+.pulse-cta { margin: 56px 0 40px; padding: clamp(28px,4vw,44px); border: 1px solid var(--line); border-radius: 16px; background: var(--bg-3); text-align: center; }
+.pulse-cta p { font-family: var(--font-display); font-size: clamp(20px,2.4vw,26px); margin: 0 0 22px; color: var(--ink); }
+.pulse-back { display: inline-block; font-family: var(--font-mono); font-size: 13px; letter-spacing:.05em; color: var(--ink-dim); text-decoration: none; }
+.pulse-back:hover { color: var(--accent); }
+.pulse-foot { border-top: 1px solid var(--line); margin-top: 40px; }
+.pulse-foot .foot-bottom { max-width: var(--maxw); margin: 0 auto; padding: 28px var(--pad); display:flex; flex-wrap:wrap; gap: 14px 28px; justify-content: space-between; font-family: var(--font-mono); font-size: 12px; color: var(--ink-mute); }
+.pulse-foot a { color: var(--ink-dim); text-decoration: none; }
+.pulse-foot a:hover { color: var(--accent); }
+@media (max-width: 600px){ .pulse-foot .foot-bottom{ justify-content:flex-start; } }
