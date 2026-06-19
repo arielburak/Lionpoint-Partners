@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://lionpointpartners.com/sitemap.xml
+Sitemap: https://lionpointpartners.com/sitemap-seo.xml

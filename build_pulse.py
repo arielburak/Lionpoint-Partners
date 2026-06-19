@@ -381,6 +381,7 @@ ROBOTS = f"""User-agent: *
 Allow: /
 
 Sitemap: {DOMAIN}/sitemap.xml
+Sitemap: {DOMAIN}/sitemap-seo.xml
 """
 
 PULSE_CSS = """/* Market Pulse section - matches Lionpoint design system */
@@ -431,6 +432,11 @@ def patch_homepage(repo, link_nav=False):
     foot_new = '        <a href="#contact">Contact</a>\n        <a href="/market-pulse/">Market Pulse</a>\n      </div>\n      <div>\n        <h4>Office</h4>'
     if foot_new not in h and foot_old in h:
         h = h.replace(foot_old, foot_new, 1)
+    # 1a2) footer Practices link: ALWAYS present (crawlability for the SEO pages)
+    fp_old = '        <a href="/market-pulse/">Market Pulse</a>\n      </div>'
+    fp_new = '        <a href="/market-pulse/">Market Pulse</a>\n        <a href="/practices/">Practices</a>\n      </div>'
+    if '<a href="/practices/">Practices</a>' not in h and fp_old in h:
+        h = h.replace(fp_old, fp_new, 1)
     # 1b) top-nav link: ONLY when going fully public (--link-nav)
     nav_old = '    <a href="#work">Placements</a>\n'
     nav_new = '    <a href="#work">Placements</a>\n    <a href="/market-pulse/">Market Pulse</a>\n'

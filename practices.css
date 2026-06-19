@@ -1,0 +1,15 @@
+.pmx-page{background:var(--bg);color:var(--ink)}
+.pmx-page .nav{position:sticky;top:0;background:rgba(244,238,226,.85);backdrop-filter:blur(8px);z-index:50}
+.faq{max-width:var(--maxw);margin:0 auto;border-top:1px solid var(--line)}
+.faq-item{padding:24px 0;border-bottom:1px solid var(--line)}
+.faq-item h3{font-family:var(--font-display);font-weight:400;font-size:clamp(18px,2vw,24px);letter-spacing:-0.01em;margin:0 0 8px}
+.faq-item p{color:var(--ink-dim);font-size:16px;line-height:1.7;margin:0;max-width:780px}
+.rel-wrap{max-width:var(--maxw);margin:0 auto}
+.rel-eyebrow{font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--ink-mute);margin-bottom:16px}
+.rel-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.rel{display:block;padding:16px 18px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-family:var(--font-sans);font-size:14px;line-height:1.4;color:var(--ink-dim);text-decoration:none;background:var(--bg);transition:background .3s,color .3s}
+.rel:hover{background:var(--bg-3);color:var(--accent)}
+.rel-date{display:block;font-family:var(--font-mono);font-size:11px;color:var(--ink-mute);margin-bottom:5px}
+.pmx-foot{border-top:1px solid var(--line);margin-top:40px}
+.pmx-foot .foot-bottom{max-width:var(--maxw);margin:0 auto;padding:28px var(--pad);display:flex;flex-wrap:wrap;gap:14px 28px;justify-content:space-between;font-family:var(--font-mono);font-size:12px;color:var(--ink-mute)}
+.pmx-foot a{color:var(--ink-dim);text-decoration:none}.pmx-foot a:hover{color:var(--accent)}
