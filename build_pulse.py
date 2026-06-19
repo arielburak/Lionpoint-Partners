@@ -18,15 +18,54 @@ MONTHS = ["January","February","March","April","May","June","July",
           "August","September","October","November","December"]
 
 # ---------- parsing ----------
-SIGNOFF_MARKERS = ["my inbox","inbox is","quietly weighing","weighing your options",
-    "weigh your options","weighing a move","reach out","drop me a line","happy to chat",
-    "that's the read","thats the read","that's the rundown","thats the rundown",
-    "back tomorrow","more tomorrow","see you tomorrow"]
+DROP_MARKERS = [
+    "my inbox","inbox is","quietly weighing","weighing your options","weigh your options",
+    "weighing a move","reach out","drop me a line","happy to chat","have a good weekend",
+    "no video","rundown in writing","here's the rundown","here is the rundown",
+    "trying something new","every weekday i'm going to post","every weekday i am going to post",
+    "here's what's moving in biglaw","here is what's moving in biglaw","in about a minute",
+    "here's the quick read","here is the quick read","here's the read","here is the read",
+    "here's today","here is today","that's the read","thats the read","that's the rundown",
+    "thats the rundown","back tomorrow","back next week","back monday","back tuesday",
+    "more tomorrow","see you tomorrow","a few things moving on the wire",
+    "a few things worth watching on the wire","my take","my read","my takeaway",
+    "i follow this market","i'll share","i want to flag","the one i'd watch","one i'd watch",
+    "i'd keep an eye","more leverage than you think","real leverage","ones with leverage",
+    "if you've got","if you're a partner","worth your time","the best time to look",
+    "before everyone else does","the lawyers who own","who have the book","i'm traveling",
+    "i'm still traveling","tend to start wondering",
+]
 
-def scrub_signoff(p):
-    sents = re.split(r"(?<=[.!?])\s+", p)
-    kept = [x for x in sents if not any(m in x.lower() for m in SIGNOFF_MARKERS)]
-    return " ".join(kept).strip()
+PARA_BREAKS = ("on the business side","on the deal side","on the deal and business side",
+    "on the lateral side","also on the","on the wire","the bigger headline","the bigger story",
+    "plenty else","there was plenty else","plenty moved","around the","around them","beyond ",
+    "away from","at the same time","outside new york","down in","even ","the backdrop",
+    "and private equity","and the partner moves kept")
+
+def _sentences(text):
+    return [x.strip() for x in re.split(r"(?<=[.!?])\s+", text) if x.strip()]
+
+def build_paragraphs(body_src):
+    chunks = []
+    for blk in re.split(r"\n\s*\n", body_src):
+        blk = blk.strip()
+        if not blk or blk.startswith("#"):
+            continue
+        if set(blk) <= set("-\u2014\u2013*_ "):
+            continue
+        chunks.append(" ".join(blk.split("\n")))
+    full = " ".join(chunks)
+    sents = [x for x in _sentences(full) if not any(m in x.lower() for m in DROP_MARKERS)]
+    paras = []; cur = []
+    for x in sents:
+        sl = x.lower().lstrip()
+        if cur and any(sl.startswith(t) for t in PARA_BREAKS):
+            paras.append(" ".join(cur)); cur = [x]
+        else:
+            cur.append(x)
+    if cur:
+        paras.append(" ".join(cur))
+    return paras
 
 def split_sections(md):
     secs = {}
@@ -76,20 +115,7 @@ def parse_script(path, posted_dir=None):
 
     # body paragraphs from caption (public voice), strip hashtag-only lines
     body_src = posted_text if posted_text else (caption if caption else teleprompter)
-    paras = []
-    for blk in re.split(r"\n\s*\n", body_src):
-        blk = blk.strip()
-        if not blk: continue
-        if blk.startswith("#"): continue                      # hashtag line
-        if set(blk) <= set("-\u2014\u2013*_ "): continue        # markdown rule / separator
-        low = blk.lower()
-        if "inbox is open" in low: continue                   # LinkedIn soft-close (not for articles)
-        if low.startswith("if you're quietly weighing"): continue
-        if low.startswith("if you're weighing"): continue
-        if low.startswith("here's what's moving"): continue   # video-ism
-        txt = scrub_signoff(" ".join(blk.split("\n")))
-        if txt:
-            paras.append(txt)
+    paras = build_paragraphs(body_src)
 
     # sources: clean, deduped PUBLICATION mastheads (no headlines, no author names, no "(Outlook)")
     PUBS = [("bloomberg law","Bloomberg Law"),("american lawyer","The American Lawyer"),
