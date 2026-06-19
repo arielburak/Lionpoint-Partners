@@ -18,7 +18,6 @@
 .pulse-h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(32px,5vw,58px); line-height: 1.02; letter-spacing: -0.03em; margin: 0 0 18px; }
 .pulse-date { display:block; font-family: var(--font-mono); font-size: 12px; letter-spacing:.08em; color: var(--ink-mute); margin-bottom: 40px; }
 .pulse-body p { font-family: var(--font-sans); font-size: 18px; line-height: 1.72; color: var(--ink-dim); margin: 0 0 22px; }
-.pulse-body p:first-child { font-size: 20px; color: var(--ink); }
 
 .pulse-sources { margin: 48px 0 0; padding-top: 28px; border-top: 1px solid var(--line); }
 .pulse-sources h2 { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing:.14em; color: var(--ink-mute); font-weight: 500; margin: 0 0 16px; }
