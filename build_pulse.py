@@ -51,7 +51,7 @@ def clean_inline(t):
     t = t.replace("**","")
     return t.strip()
 
-def parse_script(path):
+def parse_script(path, posted_dir=None):
     date_str = os.path.splitext(os.path.basename(path))[0]
     try:
         d = datetime.date.fromisoformat(date_str)
@@ -59,6 +59,11 @@ def parse_script(path):
         return None
     md = open(path, encoding="utf-8").read()
     secs = split_sections(md)
+    posted_text = None
+    if posted_dir:
+        pp = os.path.join(posted_dir, date_str + ".md")
+        if os.path.exists(pp):
+            posted_text = open(pp, encoding="utf-8").read().strip()
 
     title = clean_inline(find_section(secs, "title")).split("\n")[0].strip()
     if not title:
@@ -70,7 +75,7 @@ def parse_script(path):
     teleprompter = find_section(secs, "teleprompter")
 
     # body paragraphs from caption (public voice), strip hashtag-only lines
-    body_src = caption if caption else teleprompter
+    body_src = posted_text if posted_text else (caption if caption else teleprompter)
     paras = []
     for blk in re.split(r"\n\s*\n", body_src):
         blk = blk.strip()
@@ -440,10 +445,11 @@ def main():
     ap.add_argument("--scripts", required=True)
     ap.add_argument("--repo", required=True)
     ap.add_argument("--link-nav", action="store_true", help="add Market Pulse nav/footer links (off = soft launch)")
+    ap.add_argument("--posted", default=None, help="dir of posted LinkedIn captions YYYY-MM-DD.md; overrides script caption when present")
     args = ap.parse_args()
     arts = []
     for f in sorted(glob.glob(os.path.join(args.scripts, "*.md"))):
-        a = parse_script(f)
+        a = parse_script(f, args.posted)
         if a and a['paras']:
             arts.append(a)
     arts.sort(key=lambda a: a['date'], reverse=True)
