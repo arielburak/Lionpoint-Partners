@@ -382,6 +382,7 @@ Allow: /
 
 Sitemap: {DOMAIN}/sitemap.xml
 Sitemap: {DOMAIN}/sitemap-seo.xml
+Sitemap: {DOMAIN}/sitemap-associates.xml
 """
 
 PULSE_CSS = """/* Market Pulse section - matches Lionpoint design system */
@@ -442,6 +443,11 @@ def patch_homepage(repo, link_nav=False):
     lp_new = '        <a href="/practices/">Practices</a>\n        <a href="/markets/">Markets</a>\n      </div>'
     if 'href="/markets/">Markets</a>' not in h and lp_old in h:
         h = h.replace(lp_old, lp_new, 1)
+    # 1a4) footer Associates link
+    ap_old = '        <a href="/markets/">Markets</a>\n      </div>'
+    ap_new = '        <a href="/markets/">Markets</a>\n        <a href="/associates/">Associates</a>\n      </div>'
+    if 'href="/associates/">Associates</a>' not in h and ap_old in h:
+        h = h.replace(ap_old, ap_new, 1)
     # 1b) top-nav link: ONLY when going fully public (--link-nav)
     nav_old = '    <a href="#work">Placements</a>\n'
     nav_new = '    <a href="#work">Placements</a>\n    <a href="/market-pulse/">Market Pulse</a>\n'
