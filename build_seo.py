@@ -77,7 +77,7 @@ def recent_moves(arts, prac_kw=None, city_kw=None, n=3):
 print("data loaded:",len(PRACTICES),"practices",len(CITIES),"cities")
 
 # ---------------- TEMPLATES ----------------
-FONTS='<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">'
+FONTS='<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">'
 def esc(s): return html.escape(s)
 def nav():
     return ('<header class="nav"><a class="brand" href="/#top"><span class="brand-text">LIONPOINT</span></a>'
