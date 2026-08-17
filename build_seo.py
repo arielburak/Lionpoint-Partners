@@ -45,6 +45,11 @@ CITIES=[
  ("charlotte","Charlotte","a banking and structured finance center",["banking-finance","real-estate","capital-markets"],["charlotte"]),
 ]
 PRAC={p[0]:p for p in PRACTICES}; CITY={c[0]:c for c in CITIES}
+try:
+    import seo_content as _scn
+    P_NOTES=_scn.P
+except Exception:
+    P_NOTES={}
 
 def parse_pulse(repo):
     arts=[]
@@ -191,7 +196,7 @@ def build_all(repo, rel):
             body=(f'<section class="section"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">{cname[:2].upper()}</span> {esc(name)} &middot; {esc(cname)}</span><h1 class="section-title">{esc(name)} partner recruiting in <em>{esc(cname)}.</em></h1>'
               f'<p class="section-lede">We represent {esc(kw)} partners and practice groups on confidential lateral moves in {esc(cname)}, a market that is {esc(angle)}. Every search is led by a recruiter who knows both the {esc(kw)} market and the {esc(cname)} firms hiring in it.</p></div>{ctas(name.replace(" ","%20").replace("&","and"))}</section>'
               f'<section class="section" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">01</span> What we handle</span><h2 class="section-title">{esc(name)} searches in <em>{esc(cname)}.</em></h2></div>{services(items)}</section>'
-              f'<section class="section" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">02</span> The {esc(cname)} market</span><h2 class="section-title">Where {esc(kw)} is <em>moving.</em></h2><p class="section-lede">{esc(mkt)} {esc(note)}</p></div></section>'
+              f'<section class="section" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">02</span> The {esc(cname)} market</span><h2 class="section-title">Where {esc(kw)} is <em>moving.</em></h2><p class="section-lede">{esc(P_NOTES.get(cslug,{}).get(slug,mkt))} {esc(note)}</p></div></section>'
               f'{rm}'
               f'<section class="section approach" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">03</span> The Process</span><h2 class="section-title">Three steps, <em>handled end to end.</em></h2></div>{process()}</section>'
               f'<section class="section" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">04</span> Questions</span><h2 class="section-title">{esc(name)} in {esc(cname)}, <em>answered.</em></h2></div>{faq_block(faqs)}</section>'
@@ -235,8 +240,9 @@ def main():
         full=os.path.join(a.repo,path); os.makedirs(os.path.dirname(full),exist_ok=True)
         open(full,"w",encoding="utf-8").write(bypath[path])
     open(os.path.join(a.repo,"practices.css"),"w").write(CSS)
+    lm=datetime.date.today().isoformat()
     sm='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-    sm+="".join(f'  <url><loc>{DOMAIN}/{path.replace("index.html","")}</loc></url>\n' for path in order[:released])+"</urlset>\n"
+    sm+="".join(f'  <url><loc>{DOMAIN}/{path.replace("index.html","")}</loc><lastmod>{lm}</lastmod></url>\n' for path in order[:released])+"</urlset>\n"
     open(os.path.join(a.repo,"sitemap-seo.xml"),"w").write(sm)
     json.dump({"released":released,"total":total},open(mf,"w"))
     print(f"released {released}/{total}")

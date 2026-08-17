@@ -15,6 +15,11 @@ ITEMS=["Associates at every level, junior through senior","Counsel-track and spe
        "Lateral associates seeking better work, training, or culture","Associate groups moving together"]
 def amkt(kw): return (f"In {kw}, firms hire laterally for associates with strong training and real "
     f"experience, and the best moves line up the work, the mentorship, and a clear path to partnership.")
+try:
+    import seo_content as _scn
+    A_NOTES=_scn.A; APH=_scn.APH; ACH=_scn.ACH
+except Exception:
+    A_NOTES={}; APH={}; ACH={}
 
 def page_order():
     o=["associates/index.html"]
@@ -42,7 +47,7 @@ def build_all(repo, rel):
         body=(f'<section class="section"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">AS</span> Associate Focus</span><h1 class="section-title">{esc(name)} associate <em>recruiting.</em></h1>'
           f'<p class="section-lede">We place {esc(kw)} associates, from junior to senior, at AmLaw 200 firms and leading boutiques where the work, training, and trajectory genuinely fit. Confidential, with no pressure to take a seat that is not right for you.</p></div>{ctas(name.replace(" ","%20").replace("&","and")+"%20Associate")}</section>'
           f'<section class="section" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">01</span> What we handle</span><h2 class="section-title">{esc(name)} associates, <em>every level.</em></h2></div>{services(ITEMS)}</section>'
-          f'<section class="section" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">02</span> The market</span><h2 class="section-title">Where associates are <em>moving.</em></h2><p class="section-lede">{esc(amkt(kw))}</p></div></section>'
+          f'<section class="section" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">02</span> The market</span><h2 class="section-title">Where associates are <em>moving.</em></h2><p class="section-lede">{esc(APH.get(slug,amkt(kw)))}</p></div></section>'
           f'<section class="section approach" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">03</span> The Process</span><h2 class="section-title">Three steps, <em>handled end to end.</em></h2></div>{process()}</section>'
           f'<section class="section" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">04</span> Questions</span><h2 class="section-title">{esc(name)} associate moves, <em>answered.</em></h2></div>{faq_block(faqs)}</section>'
           f'{related_section("05","Where we recruit",esc(name)+" associates by <em>city.</em>",city_links)}')
@@ -58,6 +63,7 @@ def build_all(repo, rel):
         body=(f'<section class="section"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">{cname[:2].upper()}</span> Market</span><h1 class="section-title">Associate recruiting in <em>{esc(cname)}.</em></h1>'
           f'<p class="section-lede">{esc(cname)} is {esc(angle)}. We place associates, junior to senior, at AmLaw 200 firms and leading boutiques in {esc(cname)}, with particular depth in {esc(emph_names)}.</p></div>{ctas(cname.split(",")[0].replace(" ","%20")+"%20Associate")}</section>'
           f'{related_section("01","Practices in "+cname,"Associate searches we run <em>here.</em>",prac_links)}'
+          f'<section class="section" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">MK</span> The market</span><h2 class="section-title">Why associates choose <em>{esc(cname)}.</em></h2><p class="section-lede">{esc(ACH.get(cslug,angle))}</p></div></section>'
           f'<section class="section approach" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">02</span> The Process</span><h2 class="section-title">Three steps, <em>handled end to end.</em></h2></div>{process()}</section>'
           f'<section class="section" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">03</span> Questions</span><h2 class="section-title">{esc(cname)} associate moves, <em>answered.</em></h2></div>{faq_block(faqs)}</section>')
         pages.append((f"associates/markets/{cslug}/index.html", page(f"Associate Recruiters in {cname} | Lionpoint Partners",
@@ -73,7 +79,7 @@ def build_all(repo, rel):
             body=(f'<section class="section"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">{cname[:2].upper()}</span> {esc(name)} &middot; {esc(cname)}</span><h1 class="section-title">{esc(name)} associate recruiting in <em>{esc(cname)}.</em></h1>'
               f'<p class="section-lede">We place {esc(kw)} associates, junior to senior, at firms in {esc(cname)}, a market that is {esc(angle)}. We look past the brochure to the work, the training, and the path to partnership.</p></div>{ctas(name.replace(" ","%20").replace("&","and")+"%20Associate")}</section>'
               f'<section class="section" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">01</span> What we handle</span><h2 class="section-title">{esc(name)} associates in <em>{esc(cname)}.</em></h2></div>{services(ITEMS)}</section>'
-              f'<section class="section" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">02</span> The {esc(cname)} market</span><h2 class="section-title">Where {esc(kw)} associates are <em>moving.</em></h2><p class="section-lede">{esc(amkt(kw))}</p></div></section>'
+              f'<section class="section" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">02</span> The {esc(cname)} market</span><h2 class="section-title">Where {esc(kw)} associates are <em>moving.</em></h2><p class="section-lede">{esc(A_NOTES.get(cslug,{}).get(slug,amkt(kw)))}</p></div></section>'
                   f'<section class="section approach" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">03</span> The Process</span><h2 class="section-title">Three steps, <em>handled end to end.</em></h2></div>{process()}</section>'
               f'<section class="section" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">04</span> Questions</span><h2 class="section-title">{esc(name)} associates in {esc(cname)}, <em>answered.</em></h2></div>{faq_block(faqs)}</section>'
               f'{related_section("05","Related searches","Explore <em>more.</em>",rl)}')
@@ -93,8 +99,9 @@ def main():
     rel=set(order[:released]); pages=build_all(a.repo, rel); bypath={p:h for p,h in pages}
     for path in order[:released]:
         full=os.path.join(a.repo,path); os.makedirs(os.path.dirname(full),exist_ok=True); open(full,"w",encoding="utf-8").write(bypath[path])
+    import datetime as _dt; lm=_dt.date.today().isoformat()
     sm='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-    sm+="".join(f'  <url><loc>{DOMAIN}/{p.replace("index.html","")}</loc></url>\n' for p in order[:released])+"</urlset>\n"
+    sm+="".join(f'  <url><loc>{DOMAIN}/{p.replace("index.html","")}</loc><lastmod>{lm}</lastmod></url>\n' for p in order[:released])+"</urlset>\n"
     open(os.path.join(a.repo,"sitemap-associates.xml"),"w").write(sm)
     json.dump({"released":released,"total":total},open(mf,"w")); print(f"associate pages released {released}/{total}")
 
