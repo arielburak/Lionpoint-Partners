@@ -120,7 +120,7 @@ def parse_script(path, posted_dir=None):
     # sources: clean, deduped PUBLICATION mastheads (no headlines, no author names, no "(Outlook)")
     PUBS = [("bloomberg law","Bloomberg Law"),("american lawyer","The American Lawyer"),
             ("national law journal","The National Law Journal"),("the recorder","The Recorder"),
-            ("law360","Law360"),("reuters","Reuters"),("above the law","Above the Law"),
+            ("new york law journal","New York Law Journal"),("law360","Law360"),("reuters","Reuters"),("above the law","Above the Law"),
             ("corporate counsel","Corporate Counsel"),("law.com","Law.com"),("alm","ALM")]
     src_block = find_section(secs, "source")
     sources = []
@@ -128,14 +128,14 @@ def parse_script(path, posted_dir=None):
         ss = line.strip()
         if re.match(r"^(NOT USED|CARRYOVER|ALSO AVAILABLE|No Law\.com|No Twitter)", ss, re.I):
             break
-        if not re.match(r"^\d+\.", ss):
+        if not re.match(r"^\*{0,2}\d+\.", ss) and not ss.startswith("-"):
             continue
         low = ss.lower()
         for key, name in PUBS:
             if key in low and name not in sources:
                 sources.append(name)
     # prefer specific ALM mastheads over generic Law.com / ALM when both present
-    if any(p in sources for p in ("The American Lawyer","The National Law Journal","The Recorder")):
+    if any(p in sources for p in ("The American Lawyer","The National Law Journal","The Recorder","New York Law Journal")):
         sources = [p for p in sources if p not in ("Law.com","ALM")]
 
     # meta description: most substantive of the first few paragraphs (skip short openers)
