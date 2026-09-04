@@ -55,7 +55,8 @@ def build_paragraphs(body_src):
             continue
         chunks.append(" ".join(blk.split("\n")))
     full = " ".join(chunks)
-    sents = [x for x in _sentences(full) if not any(m in x.lower() for m in DROP_MARKERS)]
+    sents = [x for x in _sentences(full) if not any(m in x.lower() for m in DROP_MARKERS)
+             and not set(x) <= set("-\u2014\u2013*_ ")]
     paras = []; cur = []
     for x in sents:
         sl = x.lower().lstrip()
