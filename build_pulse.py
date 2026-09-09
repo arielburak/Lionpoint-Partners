@@ -37,7 +37,7 @@ DROP_MARKERS = [
 ]
 
 PARA_BREAKS = ("on the business side","on the deal side","on the deal and business side",
-    "on the lateral side","also on the","on the wire","the bigger headline","the bigger story",
+    "on the lateral side","on the merger side","also on the","on the wire","the bigger headline","the bigger story",
     "plenty else","there was plenty else","plenty moved","around the","around them","beyond ",
     "away from","at the same time","outside new york","down in","even ","the backdrop",
     "and private equity","and the partner moves kept")
