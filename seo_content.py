@@ -584,3 +584,70 @@ def check():
 
 if __name__=="__main__":
     print("ok" if check() else "fail")
+
+# Partner market-hub copy (one substantive section per city hub page, /markets/<city>/).
+# Added 2026-10-05: the city hubs (esp. /markets/new-york/, 2.7K impressions in 3 months at
+# position ~70) were the thinnest pages targeting the highest-volume "legal recruiters <city>" queries.
+# Same house rules: no em/en dashes, no firm names, no statistics, "real estate" only.
+MKT = {
+ "new-york": [
+  "New York is the center of the lateral market, and the volume of moves here gives partners and associates more real options than anywhere else, along with more noise. Firms headquartered in the city compete with national platforms that keep adding New York benches, so the same practice can be valued very differently from one firm to the next.",
+  "As New York legal recruiters, our job is to narrow that field to the platforms where your practice, your rates, and your clients actually fit, and to keep the process confidential from the first call to the offer. We work across the full market: elite firms and the AmLaw 100, growing national platforms, and the boutiques that win on focus. For partners we lead with the business case. For associates we lead with the work, the training, and a credible path forward.",
+ ],
+ "washington-dc": [
+  "Washington is where practice and policy meet. Regulatory, enforcement, antitrust, and government-facing litigation dominate, and many lawyers moving here bring agency experience that firms value as much as a portable book. That makes lateral moves in DC unusually nuanced: the right platform depends on which agencies your clients face, the conflicts a new firm would carry, and how a firm's national offices draw on its Washington bench.",
+  "We represent partners, groups, and associates moving among AmLaw 200 firms and specialized boutiques in Washington. As DC legal recruiters, we know which firms are building which regulatory and litigation practices, and we help you frame your experience, government or private, in the terms firms here actually hire on.",
+ ],
+ "boston": [
+  "Boston pairs one of the country's deepest private equity and asset management communities with the life sciences and technology ecosystem around Cambridge. Corporate, funds, and IP practices drive much of the lateral activity, and firms compete hard for partners whose sponsor and company relationships travel. The market is tighter than New York, which makes reputation and discretion matter even more.",
+  "As Boston legal recruiters, we work with partners and associates across private equity, funds, life sciences, IP, and litigation, at national firms with Boston offices and at the firms that call the city home. We help you compare platforms on what actually changes your practice: client conflicts, rate structure, staffing, and the support behind you.",
+ ],
+ "los-angeles": [
+  "Los Angeles is a sprawling, diversified legal market, from entertainment and media to real estate, private equity, and an employment docket shaped by California law. National firms continue to build in Century City and downtown, and regional firms compete by giving partners room to grow. The right fit varies widely by practice and by where your clients sit.",
+  "We recruit partners, groups, and associates across Los Angeles, with particular depth in private equity, real estate, capital markets, and litigation. Our approach as Los Angeles legal recruiters is simple: understand your practice first, bring you a short list of firms where it will be valued, and handle every step confidentially.",
+ ],
+ "philadelphia": [
+  "Philadelphia is a substantive, relationship-driven legal market anchored by litigation, healthcare, life sciences, and a strong middle-market corporate practice. Many partners here have deep regional client bases, and national firms with Philadelphia offices value lawyers who can bring that work onto a broader platform. Moves tend to be deliberate, and confidentiality matters in a market where people know each other.",
+  "As Philadelphia legal recruiters, we represent partners and associates moving among regional and national firms, and we help firms building benches in the city find lawyers who fit. For partners we focus on how your clients and rates translate to a new platform. For associates we focus on the work, the training, and the trajectory.",
+ ],
+ "chicago": [
+  "Chicago is one of the largest legal markets in the country and a national center for private equity, restructuring, finance, and complex litigation. Homegrown firms with national reach compete directly with coastal firms that keep expanding their Chicago offices, which gives partners with portable practices real leverage. Associates benefit too, with big-market work at a more livable pace.",
+  "As Chicago legal recruiters, we run confidential searches for partners, groups, and associates across corporate, finance, restructuring, and litigation. We know how the city's firms differ in culture, compensation structure, and practice strength, and we help you weigh those differences against your own goals before any introduction is made.",
+ ],
+ "atlanta": [
+  "Atlanta is the Southeast's largest legal market and one of its fastest growing, driven by corporate headquarters, fintech and payments, real estate development, and finance. National firms keep adding Atlanta capacity, which has created strong demand for partners who already hold regional client relationships and for experienced associates in transactional practices.",
+  "As Atlanta legal recruiters, we work with partners and associates across corporate, finance, real estate, and litigation. Whether you are weighing a national platform against a regional firm or building a practice from the ground up, we help you compare the options that truly fit and handle the process with discretion.",
+ ],
+ "san-francisco": [
+  "The Bay Area legal market is built around technology and venture capital. Emerging companies, M&A, capital markets, IP, privacy, and complex litigation all orbit the startup and public company ecosystem, and the market moves with the venture and IPO cycles. Partners with founder, fund, and company relationships are recruited by every kind of platform, from elite firms to Silicon Valley specialists.",
+  "As San Francisco legal recruiters, we represent partners, groups, and associates across the Bay Area, including Palo Alto and Silicon Valley. We help you separate the firms that are actually building in your practice from those that are simply hiring, and we keep every conversation confidential.",
+ ],
+ "denver": [
+  "Denver has grown into a regional hub for energy, natural resources, real estate, and venture work, and national firms have steadily added Denver offices to serve clients across the Mountain West. That expansion has opened doors for partners with regional relationships and for associates who want big-firm work outside the coastal markets.",
+  "As Denver legal recruiters, we work with partners and associates across corporate, energy, real estate, and litigation. We help you compare established local firms with national platforms building in the city, focusing on client fit, conflicts, and the support your practice needs to grow.",
+ ],
+ "miami": [
+  "Miami is one of the most dynamic legal markets in the country. The arrival of funds, family offices, and corporate headquarters has fueled demand for private equity, funds, real estate, and finance lawyers, while Latin America-connected work and international arbitration give the market a cross-border character all its own. National firms continue to open and expand Miami offices.",
+  "As Miami legal recruiters, we represent partners, groups, and associates across South Florida. We help you separate durable platforms from short-term buildouts, and match your practice, including any Latin America or cross-border work, to the firms that will value it most.",
+ ],
+ "san-diego": [
+  "San Diego is a focused legal market shaped by life sciences, biotech, medical devices, wireless technology, and defense. Intellectual property, patent litigation, FDA regulatory, and emerging companies work are central, and lawyers with technical backgrounds are in steady demand. The market is compact, so discretion and reputation carry real weight.",
+  "As San Diego legal recruiters (some attorneys still call us legal headhunters), we run confidential partner and associate searches across IP, life sciences, corporate, and litigation. We help you compare national firms with San Diego offices against the regional firms that know the local client base best.",
+ ],
+ "dallas": [
+  "Dallas has become one of the busiest legal markets in the country as corporate relocations, private equity, and energy activity have pulled national firms into North Texas. Many firms have opened or expanded Dallas offices in recent years, and competition for partners with portable practices, especially in M&A, private equity, and finance, is intense.",
+  "As Dallas legal recruiters, we work with partners, groups, and associates across Dallas and the wider DFW market. We help you evaluate the growing list of platforms on what matters for your practice: client conflicts, rate structure, the strength of the team behind you, and how committed the firm is to the market.",
+ ],
+ "houston": [
+  "Houston is the energy capital of the legal world, with deep transactional, finance, project development, and restructuring benches serving oil and gas, power, and energy transition clients. The Southern District of Texas also makes Houston a major restructuring venue. National and Texas-based firms compete for partners whose energy and finance relationships travel.",
+  "As Houston legal recruiters, we run confidential searches for partners, groups, and associates across energy, M&A, finance, restructuring, and litigation. We help you compare platforms on client conflicts in a concentrated industry, on rates, and on the depth of the team you would join.",
+ ],
+ "austin": [
+  "Austin has grown from a capital-city market into a national technology and venture hub, with semiconductor, software, and consumer technology companies driving emerging companies, M&A, and IP work. The Western District of Texas has also drawn a significant patent docket, and national firms have expanded in Austin to follow their clients.",
+  "As Austin legal recruiters, we work with partners and associates across emerging companies, corporate, IP, and litigation. We help you weigh fast-growing offices against established local firms and find the platform where your practice and your clients fit.",
+ ],
+ "charlotte": [
+  "Charlotte is one of the country's largest banking centers, and its legal market reflects that: finance, structured products, capital markets, and bank regulatory work sit at its core, alongside a growing corporate and real estate practice across the Carolinas. Partners with bank and lender relationships are especially valued.",
+  "As a legal search firm in Charlotte, we represent partners and associates across finance, capital markets, regulatory, corporate, and real estate. We help you compare national firms with Charlotte offices against regional firms with deep Carolinas roots, and we keep every step confidential.",
+ ],
+}

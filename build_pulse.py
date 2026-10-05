@@ -452,7 +452,7 @@ def patch_homepage(repo, link_nav=False):
     # 1b) top-nav link: ONLY when going fully public (--link-nav)
     nav_old = '    <a href="#work">Placements</a>\n'
     nav_new = '    <a href="#work">Placements</a>\n    <a href="/market-pulse/">Market Pulse</a>\n'
-    if link_nav and nav_new not in h and nav_old in h:
+    if link_nav and nav_new not in h and nav_old in h and '<a href="/market-pulse/">Market Pulse</a>\n    <a href="#contact">' not in h:
         h = h.replace(nav_old, nav_new, 1)
     # 2) SEO head block (idempotent)
     if "og:site_name" not in h:
@@ -510,6 +510,14 @@ def main():
     open(os.path.join(args.repo, "robots.txt"), "w", encoding="utf-8").write(ROBOTS)
     open(os.path.join(args.repo, "pulse.css"), "w", encoding="utf-8").write(PULSE_CSS)
     patch_homepage(args.repo, args.link_nav)
+    # internal links from every article to the matching practice/market pages (SEO, 2026-10-05)
+    try:
+        import importlib.util as _iu
+        _sp = _iu.spec_from_file_location("pulse_related", os.path.join(os.path.dirname(os.path.abspath(__file__)), "pulse_related.py"))
+        _pr = _iu.module_from_spec(_sp); _sp.loader.exec_module(_pr)
+        _pr.ensure_css(args.repo); print("pulse_related: %d scanned, %d updated" % _pr.apply(args.repo))
+    except Exception as e:
+        print("pulse_related skipped:", e)
     print(f"Generated {len(arts)} articles + hub + sitemap + rss + robots + pulse.css")
     print("Latest:", arts[0]['slug'] if arts else "(none)")
 

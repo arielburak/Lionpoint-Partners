@@ -36,3 +36,13 @@
 .pulse-foot a { color: var(--ink-dim); text-decoration: none; }
 .pulse-foot a:hover { color: var(--accent); }
 @media (max-width: 600px){ .pulse-foot .foot-bottom{ justify-content:flex-start; } }
+
+/* related recruiting links (pulse_related.py) */
+.pulse-related { margin: 44px 0 0; padding-top: 26px; border-top: 1px solid var(--line); }
+.pulse-related h2 { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing:.14em; color: var(--ink-mute); font-weight: 500; margin: 0 0 14px; }
+.pulse-related ul { list-style: none; padding: 0; margin: 0 0 14px; display: grid; gap: 8px; }
+.pulse-related li { font-size: 15px; line-height: 1.5; padding-left: 18px; position: relative; }
+.pulse-related li::before { content: "/"; position: absolute; left: 0; color: var(--accent); font-family: var(--font-mono); }
+.pulse-related a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line-2); }
+.pulse-related a:hover { color: var(--accent); border-color: var(--accent); }
+.pulse-related-more { font-size: 14px; color: var(--ink-mute); margin: 0; }

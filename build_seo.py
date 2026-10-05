@@ -48,8 +48,9 @@ PRAC={p[0]:p for p in PRACTICES}; CITY={c[0]:c for c in CITIES}
 try:
     import seo_content as _scn
     P_NOTES=_scn.P
+    MKT_NOTES=getattr(_scn,'MKT',{})
 except Exception:
-    P_NOTES={}
+    P_NOTES={}; MKT_NOTES={}
 
 def parse_pulse(repo):
     arts=[]
@@ -87,7 +88,7 @@ def esc(s): return html.escape(s)
 def nav():
     return ('<header class="nav"><a class="brand" href="/#top"><span class="brand-text">LIONPOINT</span></a>'
             '<nav class="nav-links"><a href="/#practice">Services</a><a href="/practices/">Practices</a>'
-            '<a href="/#work">Placements</a><a href="/#contact">Contact</a></nav>'
+            '<a href="/#work">Placements</a><a href="/market-pulse/">Market Pulse</a><a href="/#contact">Contact</a></nav>'
             '<div class="nav-cta"><a class="btn btn-primary" href="/#contact"><span>Start a conversation</span></a></div></header>')
 def foot():
     return ('<footer class="foot pmx-foot"><div class="foot-bottom"><span>&copy; 2026 Lionpoint Partners LLC</span>'
@@ -142,7 +143,7 @@ def page_order():
 def build_all(repo, rel):
     arts=parse_pulse(repo); pages=[]
     pl=live([(p[1]+" Partner Recruiting",f"/practices/{p[0]}/") for p in PRACTICES], rel)
-    pages.append(("practices/index.html", page("Legal Practice Recruiting | Lionpoint Partners",
+    pages.append(("practices/index.html", page("Legal Recruiters by Practice Area | Lionpoint Partners",
         "Confidential partner and group recruiting across M&A, private equity, real estate, litigation, finance, IP, and more, for AmLaw 200 firms nationwide.",
         DOMAIN+"/practices/",[("Home","/"),("Practices","/practices/")],
         f'<section class="section"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">00</span> Practices</span><h2 class="section-title">Recruiting by <em>practice.</em></h2><p class="section-lede">We run confidential partner and group searches across the practices below, nationwide and in your market. You can also browse <a href="/markets/">recruiting by city</a>.</p></div><section style="padding-top:0">{related("All practices",pl)}</section></section>')))
@@ -165,24 +166,30 @@ def build_all(repo, rel):
           f'<section class="section approach" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">03</span> The Process</span><h2 class="section-title">Three steps, <em>handled end to end.</em></h2></div>{process()}</section>'
           f'<section class="section" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">04</span> Questions</span><h2 class="section-title">{esc(name)} moves, <em>answered.</em></h2></div>{faq_block(faqs)}</section>'
           f'{related_section("05","Where we recruit",esc(name)+" by <em>city.</em>",city_links)}')
-        pages.append((f"practices/{slug}/index.html", page(f"{name} Partner Recruiting | Lionpoint Partners",
-            f"Lionpoint Partners recruits {kw} partners and groups for AmLaw 200 firms and boutiques nationwide. Confidential lateral search.",
+        pages.append((f"practices/{slug}/index.html", page(f"{name} Legal Recruiters | Partner Search | Lionpoint Partners",
+            f"{name} legal recruiters for law firm partners and practice groups. Confidential lateral search with AmLaw 200 firms and boutiques nationwide. NALSC member firm.",
             DOMAIN+f"/practices/{slug}/",[("Home","/"),("Practices","/practices/"),(name,f"/practices/{slug}/")],body)))
     for cslug,cname,angle,emph,ckw in CITIES:
         rm=recent_section(recent_moves(arts,None,ckw))
         prac_links=live([(f"{PRAC[ps][1]} in {cname}",f"/practices/{ps}/{cslug}/") for ps in [p[0] for p in PRACTICES]], rel)
         emph_names=", ".join(PRAC[e][1] for e in emph)
         faqs=[(f"Do you recruit partners in {cname}?",f"Yes. We run confidential partner and group searches across practices with AmLaw 200 firms and boutiques in {cname} and nationwide."),
+              (f"What does a legal recruiter in {cname} actually do?",f"We learn your practice and goals, identify the {cname} firms where you would fit, make introductions only with your approval, prepare you for each conversation, and help negotiate the offer."),
+              ("Does it cost an attorney anything to work with a legal recruiter?","No. Our fee is paid by the hiring firm, so there is no cost to the attorneys we represent."),
               (f"Which practices are most active in {cname}?",f"In {cname} we see particular activity in {emph_names}, though we cover the full range of practices."),
               ("Do you represent firms or candidates?","Both. We run retained searches for firms and represent partners and groups exploring a move.")]
-        body=(f'<section class="section"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">{cname[:2].upper()}</span> Market</span><h1 class="section-title">Legal recruiting in <em>{esc(cname)}.</em></h1>'
+        mk=MKT_NOTES.get(cslug,[])
+        mk_sec=(f'<section class="section" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">MK</span> The {esc(cname)} market</span><h2 class="section-title">How we work in <em>{esc(cname)}.</em></h2>'
+                + "".join(f'<p class="section-lede">{esc(x)}</p>' for x in mk) + '</div></section>') if mk else ''
+        body=(f'<section class="section"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">{cname[:2].upper()}</span> Market</span><h1 class="section-title">{esc(cname)} legal <em>recruiters.</em></h1>'
           f'<p class="section-lede">{esc(cname)} is {esc(angle)}. We represent partners and practice groups on confidential lateral moves to AmLaw 200 firms and leading boutiques in {esc(cname)}, with particular depth in {esc(emph_names)}.</p></div>{ctas(cname.split(",")[0].replace(" ","%20"))}</section>'
+          f'{mk_sec}'
           f'{related_section("01","Practices in "+cname,"Searches we run <em>here.</em>",prac_links)}'
           f'{rm}'
           f'<section class="section approach" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">02</span> The Process</span><h2 class="section-title">Three steps, <em>handled end to end.</em></h2></div>{process()}</section>'
           f'<section class="section" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">03</span> Questions</span><h2 class="section-title">{esc(cname)} moves, <em>answered.</em></h2></div>{faq_block(faqs)}</section>')
-        pages.append((f"markets/{cslug}/index.html", page(f"Legal Recruiters in {cname} | Lionpoint Partners",
-            f"Lionpoint Partners recruits partners and practice groups for AmLaw 200 firms and boutiques in {cname}. Confidential lateral search.",
+        pages.append((f"markets/{cslug}/index.html", page(f"{cname} Legal Recruiters | Lionpoint Partners",
+            f"Legal recruiters in {cname} for law firm partners, practice groups, and associates. Confidential lateral search with AmLaw 200 firms and boutiques. NALSC member firm.",
             DOMAIN+f"/markets/{cslug}/",[("Home","/"),("Markets","/markets/"),(cname,f"/markets/{cslug}/")],body)))
     for cslug,cname,angle,emph,ckw in CITIES:
         for slug,name,kw,items,mkt,pkw in PRACTICES:
@@ -201,8 +208,8 @@ def build_all(repo, rel):
               f'<section class="section approach" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">03</span> The Process</span><h2 class="section-title">Three steps, <em>handled end to end.</em></h2></div>{process()}</section>'
               f'<section class="section" style="padding-top:0"><div class="section-head"><span class="eyebrow"><span class="eyebrow-num">04</span> Questions</span><h2 class="section-title">{esc(name)} in {esc(cname)}, <em>answered.</em></h2></div>{faq_block(faqs)}</section>'
               f'{related_section("05","Related searches","Explore <em>more.</em>",rl)}')
-            pages.append((f"practices/{slug}/{cslug}/index.html", page(f"{name} Partner Recruiting in {cname} | Lionpoint Partners",
-                f"{name} partner and group recruiting in {cname}. Confidential lateral search with AmLaw 200 firms and boutiques. Lionpoint Partners.",
+            pages.append((f"practices/{slug}/{cslug}/index.html", page(f"{name} Legal Recruiters in {cname} | Lionpoint Partners",
+                f"{name} legal recruiters in {cname}. Confidential lateral partner and group search with AmLaw 200 firms and boutiques. NALSC member firm.",
                 DOMAIN+f"/practices/{slug}/{cslug}/",[("Home","/"),("Practices","/practices/"),(name,f"/practices/{slug}/"),(cname,f"/practices/{slug}/{cslug}/")],body)))
     return pages
 
