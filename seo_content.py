@@ -651,3 +651,10 @@ MKT = {
   "As a legal search firm in Charlotte, we represent partners and associates across finance, capital markets, regulatory, corporate, and real estate. We help you compare national firms with Charlotte offices against regional firms with deep Carolinas roots, and we keep every step confidential.",
  ],
 }
+
+# Per-page title / meta-description overrides, keyed by repo path ("markets/new-york/index.html").
+# Used by the weekly striking-distance tune-up: when a page ranks ~8-25 for a query whose exact
+# phrasing is missing from its title, the title is adjusted here (never in generated HTML, which
+# is rebuilt daily). Keep titles under ~65 characters; change a given page at most once per 4 weeks.
+TITLES = {}
+DESCS = {}

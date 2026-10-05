@@ -231,6 +231,24 @@ CSS='''.pmx-page{background:var(--bg);color:var(--ink)}
 .pmx-foot a{color:var(--ink-dim);text-decoration:none}.pmx-foot a:hover{color:var(--accent)}
 '''
 
+def _apply_overrides(path, h):
+    """Title/description overrides from seo_content.TITLES / DESCS (weekly tune-ups)."""
+    try:
+        import seo_content as _sc
+        T=getattr(_sc,'TITLES',{}); D=getattr(_sc,'DESCS',{})
+    except Exception:
+        return h
+    import re as _re, html as _html
+    if path in T:
+        t=_html.escape(T[path])
+        h=_re.sub(r'<title>.*?</title>', lambda _: f'<title>{t}</title>', h, count=1, flags=_re.S)
+        h=_re.sub(r'<meta property="og:title" content="[^"]*">', lambda _: f'<meta property="og:title" content="{t}">', h, count=1)
+    if path in D:
+        d=_html.escape(D[path])
+        h=_re.sub(r'<meta name="description" content="[^"]*">', lambda _: f'<meta name="description" content="{d}">', h, count=1)
+        h=_re.sub(r'<meta property="og:description" content="[^"]*">', lambda _: f'<meta property="og:description" content="{d}">', h, count=1)
+    return h
+
 def main():
     ap=argparse.ArgumentParser(); ap.add_argument("--repo",required=True); ap.add_argument("--advance",type=int,default=0); ap.add_argument("--release-all",action="store_true")
     a=ap.parse_args()
@@ -245,7 +263,7 @@ def main():
     bypath={p:h for p,h in pages}
     for path in order[:released]:
         full=os.path.join(a.repo,path); os.makedirs(os.path.dirname(full),exist_ok=True)
-        open(full,"w",encoding="utf-8").write(bypath[path])
+        open(full,"w",encoding="utf-8").write(_apply_overrides(path, bypath[path]))
     open(os.path.join(a.repo,"practices.css"),"w").write(CSS)
     lm=datetime.date.today().isoformat()
     sm='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
